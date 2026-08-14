@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { TocSection } from '../../utils/useTableOfContents';
+import type { TocSection } from '../../utils/parsePostContent';
 
 function scrollToSection(e: React.MouseEvent, id: string) {
   e.preventDefault();

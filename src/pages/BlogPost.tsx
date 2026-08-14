@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPostBySlug, getPublishedPosts } from '../firebase/posts';
 import type { Post } from '../firebase/posts';
 import { formatDate } from '../utils/date';
 import { tagColor, readingTime } from '../utils/tagColor';
-import { useTableOfContents } from '../utils/useTableOfContents';
+import { parsePostContent } from '../utils/parsePostContent';
 import { TableOfContentsSidebar, TableOfContentsModal } from '../components/blog/TableOfContents';
 import { PostCard } from '../components/blog/PostCard';
 
@@ -12,7 +12,6 @@ export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null | undefined>(undefined);
   const [related, setRelated] = useState<Post[]>([]);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -28,7 +27,10 @@ export function BlogPost() {
     });
   }, [post]);
 
-  const sections = useTableOfContents(contentRef, [post?.content]);
+  const { html: contentHtml, sections } = useMemo(
+    () => parsePostContent(post?.content ?? ''),
+    [post?.content],
+  );
 
   if (post === undefined) return null;
   if (post === null) return <p className="p-10 text-center text-slate">Post no encontrado.</p>;
@@ -64,9 +66,9 @@ export function BlogPost() {
             </div>
           </div>
           <div
-            ref={contentRef}
             className="text-[17.5px] leading-8 text-[#c9cfda]
-              [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:pb-3 [&_h2]:border-b [&_h2]:border-white/10 [&_h2]:scroll-mt-24
+              [&_h2]:relative [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-14 [&_h2]:mb-5 [&_h2]:pt-4 [&_h2]:scroll-mt-24
+              [&_h2::before]:content-[''] [&_h2::before]:absolute [&_h2::before]:top-0 [&_h2::before]:left-0 [&_h2::before]:w-10 [&_h2::before]:h-[3px] [&_h2::before]:rounded-full [&_h2::before]:bg-gradient-to-r [&_h2::before]:from-orbix-violet [&_h2::before]:to-orbix-lime
               [&_h3]:font-display [&_h3]:font-semibold [&_h3]:text-xl [&_h3]:text-bone [&_h3]:mt-8 [&_h3]:mb-3
               [&_p]:mb-6
               [&_ul]:list-none [&_ul]:pl-0 [&_ul]:mb-6 [&_ul>li]:relative [&_ul>li]:pl-6 [&_ul>li]:mb-2.5
@@ -81,11 +83,11 @@ export function BlogPost() {
               [&_td]:border-b [&_td]:border-white/5 [&_td]:px-4 [&_td]:py-3 [&_td]:align-top
               [&_tbody_tr:nth-child(even)]:bg-white/[0.02]
               [&_img]:rounded-2xl [&_img]:my-8 [&_img]:max-w-full [&_img]:border [&_img]:border-white/10
-              [&_hr]:border-white/10 [&_hr]:my-10
+              [&_hr]:border-none [&_hr]:h-8
               [&_a]:text-orbix-lime [&_a]:underline [&_a]:underline-offset-2
               [&_[data-youtube-video]]:aspect-video [&_[data-youtube-video]]:rounded-2xl [&_[data-youtube-video]]:overflow-hidden [&_[data-youtube-video]]:my-8 [&_[data-youtube-video]]:border [&_[data-youtube-video]]:border-white/10
               [&_[data-youtube-video]_iframe]:w-full [&_[data-youtube-video]_iframe]:h-full"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
           <div className="flex gap-2.5 flex-wrap mt-9">
             {post.tags.map((t) => (

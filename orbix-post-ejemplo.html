@@ -1,0 +1,130 @@
+<h2>Introducción: por qué documentamos así</h2>
+<p>Este artículo es un ejemplo completo para probar <strong>todo</strong> lo que soporta el editor de ORBIX Studio: títulos, subtítulos, listas, tablas, código, imágenes, video y más. Podés borrar las secciones que no necesites y quedarte solo con la estructura.</p>
+<p>Un párrafo puede tener <strong>texto en negrita</strong>, <em>texto en cursiva</em> y <code>código en línea</code> combinados sin problema.</p>
+<ul>
+  <li>ORBIX Studio construye software con estándares reales.</li>
+  <li>Cada entrada del blog documenta una decisión técnica concreta.</li>
+  <li>El objetivo es que otro integrante del equipo pueda retomar el trabajo sin perderse.</li>
+</ul>
+
+<h3>Un subtítulo dentro de la introducción</h3>
+<p>Los H3 dividen una sección larga sin agregar una entrada nueva al índice (el índice solo lista los H2 principales).</p>
+<blockquote>La documentación no es un extra: es parte del entregable.</blockquote>
+
+<hr>
+
+<h2>Arquitectura general del proyecto</h2>
+<p>Antes de entrar en detalle, conviene tener el panorama completo de las piezas que interactúan entre sí.</p>
+<img src="https://picsum.photos/seed/orbix-arquitectura/1200/600" alt="Diagrama de arquitectura" />
+<p><em>Imagen de ejemplo — reemplazala por una captura o diagrama real del proyecto.</em></p>
+
+<h3>Componentes principales</h3>
+<ol>
+  <li>Front-end en React + TypeScript.</li>
+  <li>Backend as a service con Firebase (Auth, Firestore).</li>
+  <li>Imágenes servidas desde Cloudinary.</li>
+</ol>
+
+<table>
+  <thead>
+    <tr><th>Capa</th><th>Tecnología</th><th>Responsabilidad</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Front-end</td><td>React + Vite</td><td>Interfaz y navegación</td></tr>
+    <tr><td>Datos</td><td>Firestore</td><td>Posts, mensajes de contacto</td></tr>
+    <tr><td>Auth</td><td>Firebase Auth</td><td>Login del equipo</td></tr>
+    <tr><td>Media</td><td>Cloudinary</td><td>Imágenes de portada y contenido</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Cómo configuramos el entorno local</h2>
+<p>Estos son los pasos mínimos para levantar el proyecto en una máquina nueva:</p>
+<pre><code>git clone https://github.com/orbix-studio/orbix
+cd orbix
+npm install
+cp .env.example .env
+npm run dev</code></pre>
+<p>Si todo salió bien, el sitio queda disponible en <code>http://localhost:5173</code>.</p>
+
+<h3>Variables de entorno necesarias</h3>
+<table>
+  <thead>
+    <tr><th>Variable</th><th>Para qué sirve</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>VITE_FIREBASE_API_KEY</td><td>Autenticación con el proyecto Firebase</td></tr>
+    <tr><td>VITE_CLOUDINARY_CLOUD_NAME</td><td>Subida de imágenes</td></tr>
+    <tr><td>VITE_CLOUDINARY_UPLOAD_PRESET</td><td>Preset unsigned de Cloudinary</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Modelo de datos en Firestore</h2>
+<p>Usamos cuatro colecciones principales:</p>
+<ul>
+  <li><code>posts</code>: artículos del blog, con status <code>draft</code> o <code>published</code>.</li>
+  <li><code>team</code>: información del equipo (a futuro).</li>
+  <li><code>messages</code>: mensajes recibidos desde el formulario de contacto.</li>
+  <li><code>users</code>: cuentas del equipo con acceso al panel.</li>
+</ul>
+<img src="https://picsum.photos/seed/orbix-firestore/1200/500" alt="Estructura de colecciones" />
+
+<h3>Reglas de seguridad, en resumen</h3>
+<blockquote>Los posts publicados son públicos para leer; solo un usuario autenticado puede escribir. Los mensajes se pueden crear pero no leer desde el cliente.</blockquote>
+
+<hr>
+
+<h2>Ejemplo de flujo de publicación</h2>
+<p>Así es como un integrante del equipo publica un artículo nuevo:</p>
+<ol>
+  <li>Entra a <code>/admin/login</code> y se autentica.</li>
+  <li>Crea un post nuevo desde el dashboard.</li>
+  <li>Escribe el contenido con el editor (como este mismo ejemplo).</li>
+  <li>Sube una imagen de portada.</li>
+  <li>Guarda como borrador o publica directamente.</li>
+</ol>
+<pre><code>kubectl get pods -n orbix-demo
+kubectl logs deployment/orbix-web -n orbix-demo</code></pre>
+<p><em>(Ese bloque de código es solo un ejemplo de cómo se ve un bloque de código con varias líneas.)</em></p>
+
+<hr>
+
+<h2>Galería de ejemplo</h2>
+<p>Podés meter varias imágenes seguidas si el contenido lo necesita:</p>
+<img src="https://picsum.photos/seed/orbix-1/900/500" alt="Ejemplo 1" />
+<img src="https://picsum.photos/seed/orbix-2/900/500" alt="Ejemplo 2" />
+<img src="https://picsum.photos/seed/orbix-3/900/500" alt="Ejemplo 3" />
+
+<hr>
+
+<h2>Video de referencia</h2>
+<p>Así se ve un video de YouTube embebido dentro de un post:</p>
+<div data-youtube-video=""><iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" width="640" height="480"></iframe></div>
+<p><em>Video de ejemplo — insertá el real con el botón ▶ de la barra de herramientas.</em></p>
+
+<hr>
+
+<h2>Errores comunes y cómo resolverlos</h2>
+<table>
+  <thead>
+    <tr><th>Síntoma</th><th>Causa probable</th><th>Qué revisar</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Missing or insufficient permissions</td><td>Reglas de Firestore no permiten la consulta</td><td>firestore.rules</td></tr>
+    <tr><td>La imagen no se sube</td><td>Preset de Cloudinary mal configurado</td><td>Upload preset → Unsigned</td></tr>
+    <tr><td>Login inválido</td><td>Usuario no existe o contraseña incorrecta</td><td>Authentication → Usuarios</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Cierre</h2>
+<p>Con esto ya viste títulos, subtítulos, listas, tablas, bloques de código, código en línea, citas, imágenes, video embebido y links. Para más detalles, revisá el <a href="https://orbix.studio">sitio de ORBIX Studio</a>.</p>
+<ul>
+  <li>Borrá lo que no necesites de este ejemplo.</li>
+  <li>Reemplazá las imágenes de picsum.photos por las reales, subiéndolas con el botón 🖼.</li>
+  <li>Cambiá el video por el que corresponda.</li>
+</ul>
