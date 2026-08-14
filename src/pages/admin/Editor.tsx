@@ -3,7 +3,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TiptapImage from '@tiptap/extension-image';
 import TiptapLink from '@tiptap/extension-link';
-import Table from '@tiptap/extension-table';
+import { Table } from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
@@ -129,11 +129,16 @@ export function Editor() {
         )}
 
         <label className="block text-sm font-semibold text-slate mb-2">Contenido</label>
+        <p className="text-xs text-slate mb-2">
+          Escribí libremente como en un documento: seguí tipeando, presioná Enter para bajar de línea y usá los
+          botones de arriba para convertir el bloque donde está el cursor (título, lista, tabla, etc.). Podés mezclar
+          todos los que quieras, en el orden que quieras.
+        </p>
         <EditorToolbar editor={editor} onUploadImage={handleContentImageUpload} />
         <div className="border border-white/10 rounded-b-xl overflow-hidden mb-6">
           <EditorContent
             editor={editor}
-            className="min-h-[320px] px-4 py-4 text-[#c9cfda] max-w-none
+            className="min-h-[220px] px-4 pt-4 text-[#c9cfda] max-w-none
               [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-6 [&_h2]:mb-3
               [&_h3]:font-display [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:text-bone [&_h3]:mt-5 [&_h3]:mb-2
               [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-1
@@ -143,6 +148,19 @@ export function Editor() {
               [&_table]:border-collapse [&_table]:w-full [&_th]:border [&_th]:border-white/15 [&_th]:p-2 [&_td]:border [&_td]:border-white/15 [&_td]:p-2
               [&_img]:rounded-lg [&_img]:max-w-full"
           />
+          <div
+            className="h-16 px-4 py-2 text-xs text-slate/60 cursor-text"
+            onClick={() => {
+              const lastNode = editor?.state.doc.lastChild;
+              if (lastNode && lastNode.type.name !== 'paragraph') {
+                editor?.chain().focus('end').insertContent({ type: 'paragraph' }).run();
+              } else {
+                editor?.chain().focus('end').run();
+              }
+            }}
+          >
+            ↓ Hacé clic acá para seguir escribiendo al final
+          </div>
         </div>
 
         <label htmlFor="tagInput" className="block text-sm font-semibold text-slate mb-2.5">Agregar tag</label>
