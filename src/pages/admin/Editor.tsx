@@ -12,6 +12,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createPost, updatePost, getPostById } from '../../firebase/posts';
 import { useAuth } from '../../firebase/auth';
 import { uploadCoverImage } from '../../utils/cloudinary';
+import { slugify } from '../../utils/slug';
 import { EditorToolbar } from './EditorToolbar';
 
 export function Editor() {
@@ -53,19 +54,35 @@ export function Editor() {
 
   const [uploading, setUploading] = useState(false);
 
+  function postFolder() {
+    const base = title.trim() ? slugify(title) : `borrador-${id ?? Date.now()}`;
+    return `orbix-posts/${base}`;
+  }
+
   async function handleCoverUpload(file: File) {
     setUploading(true);
     try {
-      const url = await uploadCoverImage(file);
+      const url = await uploadCoverImage(file, postFolder());
       setCoverImageUrl(url);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'No se pudo subir la imagen de portada.');
     } finally {
       setUploading(false);
     }
   }
 
+  const [insertingImage, setInsertingImage] = useState(false);
+
   async function handleContentImageUpload(file: File) {
-    const url = await uploadCoverImage(file);
-    editor?.chain().focus().setImage({ src: url }).run();
+    setInsertingImage(true);
+    try {
+      const url = await uploadCoverImage(file, postFolder());
+      editor?.chain().focus().setImage({ src: url }).run();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'No se pudo subir la imagen.');
+    } finally {
+      setInsertingImage(false);
+    }
   }
 
   function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -135,6 +152,7 @@ export function Editor() {
           todos los que quieras, en el orden que quieras.
         </p>
         <EditorToolbar editor={editor} onUploadImage={handleContentImageUpload} />
+        {insertingImage && <p className="text-xs text-orbix-lime mb-2">Subiendo imagen…</p>}
         <div className="border border-white/10 rounded-b-xl overflow-hidden mb-6">
           <EditorContent
             editor={editor}
