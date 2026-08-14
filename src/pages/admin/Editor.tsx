@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { createPost, updatePost, getPostById } from '../../firebase/posts';
 import { useAuth } from '../../firebase/auth';
-import { storage } from '../../firebase/config';
+import { uploadCoverImage } from '../../utils/cloudinary';
 
 export function Editor() {
   const { id } = useParams<{ id: string }>();
@@ -32,11 +31,16 @@ export function Editor() {
     });
   }, [id, editor]);
 
+  const [uploading, setUploading] = useState(false);
+
   async function handleCoverUpload(file: File) {
-    const storageRef = ref(storage, `covers/${Date.now()}-${file.name}`);
-    await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(storageRef);
-    setCoverImageUrl(url);
+    setUploading(true);
+    try {
+      const url = await uploadCoverImage(file);
+      setCoverImageUrl(url);
+    } finally {
+      setUploading(false);
+    }
   }
 
   function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -92,7 +96,11 @@ export function Editor() {
         <label htmlFor="cover" className="block text-sm font-semibold text-slate mb-2">Imagen de portada</label>
         <input id="cover" type="file" accept="image/*"
           onChange={(e) => e.target.files?.[0] && handleCoverUpload(e.target.files[0])}
-          className="mb-6 text-sm text-slate" />
+          className="mb-2 text-sm text-slate" />
+        {uploading && <p className="text-sm text-slate mb-4">Subiendo imagen…</p>}
+        {coverImageUrl && !uploading && (
+          <img src={coverImageUrl} alt="Portada" className="w-full max-h-52 object-cover rounded-xl mb-6" />
+        )}
 
         <label className="block text-sm font-semibold text-slate mb-2">Contenido</label>
         <div className="border border-white/10 rounded-xl overflow-hidden mb-6">

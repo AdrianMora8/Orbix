@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllPosts, deletePost, Post } from '../../firebase/posts';
+import { getAllPosts, deletePost } from '../../firebase/posts';
+import type { Post } from '../../firebase/posts';
 import { useAuth } from '../../firebase/auth';
 import { formatDate } from '../../utils/date';
 

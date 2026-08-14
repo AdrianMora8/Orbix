@@ -3,8 +3,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
-  User,
 } from 'firebase/auth';
+import type { User } from 'firebase/auth';
 import { auth } from './config';
 
 type AuthContextValue = {

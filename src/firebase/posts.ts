@@ -58,7 +58,11 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const q = query(collection(db, POSTS), where('slug', '==', slug));
+  const q = query(
+    collection(db, POSTS),
+    where('slug', '==', slug),
+    where('status', '==', 'published'),
+  );
   const snap = await getDocs(q);
   if (snap.docs.length === 0) return null;
   return toPost(snap.docs[0].id, snap.docs[0].data());

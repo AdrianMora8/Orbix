@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getPostBySlug, Post } from '../firebase/posts';
+import { getPostBySlug } from '../firebase/posts';
+import type { Post } from '../firebase/posts';
 import { formatDate } from '../utils/date';
+import { tagColor, readingTime } from '../utils/tagColor';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,16 +17,23 @@ export function BlogPost() {
   if (post === undefined) return null;
   if (post === null) return <p className="p-10 text-center text-slate">Post no encontrado.</p>;
 
+  const color = tagColor(post.tags[0]);
+
   return (
     <div>
-      <div className="aspect-[21/8] min-h-[220px] bg-gradient-to-br from-orbix-blue/50 to-orbix-cyan/20" />
+      {post.coverImageUrl ? (
+        <div className="aspect-[21/8] min-h-[220px] bg-cover bg-center" style={{ backgroundImage: `url(${post.coverImageUrl})` }} />
+      ) : (
+        <div className="aspect-[21/8] min-h-[220px] bg-gradient-to-br from-orbix-blue/50 to-orbix-cyan/20" />
+      )}
       <div className="max-w-3xl mx-auto px-8 py-14">
         <Link to="/blog" className="inline-flex items-center gap-1.5 text-orbix-cyan text-sm font-semibold mb-6">
           ← Volver al blog
         </Link>
         <div className="flex items-center gap-2.5 mb-4">
-          <span className="text-xs font-semibold text-orbix-cyan bg-orbix-cyan/10 rounded-full px-3 py-1.5">{post.tags[0]}</span>
+          <span className="text-xs font-semibold rounded-full px-3 py-1.5" style={{ color, backgroundColor: `${color}1a` }}>{post.tags[0]}</span>
           <span className="text-sm text-slate">{formatDate(post.createdAt)}</span>
+          <span className="text-sm text-slate">· {readingTime(post.content)} min de lectura</span>
         </div>
         <h1 className="font-display font-bold text-5xl leading-tight mb-6">{post.title}</h1>
         <div className="flex items-center gap-3 pb-7 mb-8 border-b border-white/10">

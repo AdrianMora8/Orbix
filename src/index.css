@@ -5,3 +5,35 @@
 html, body { margin: 0; padding: 0; background: #05070f; }
 body { -webkit-font-smoothing: antialiased; }
 ::selection { background: rgba(46,107,255,0.35); }
+
+.orbit-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.orbit-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.orbit-starfield {
+  background-image: radial-gradient(rgba(95, 212, 208, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.orbit-ring-spin {
+  animation: orbit-spin 40s linear infinite;
+}
+
+@keyframes orbit-spin-reverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+.orbit-ring-spin-reverse {
+  animation: orbit-spin-reverse 40s linear infinite;
+}

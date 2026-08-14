@@ -1,4 +1,4 @@
-import { Post } from '../../firebase/posts';
+import type { Post } from '../../firebase/posts';
 
 export function filterPosts(posts: Post[], { tag, query }: { tag: string; query: string }): Post[] {
   const q = query.trim().toLowerCase();

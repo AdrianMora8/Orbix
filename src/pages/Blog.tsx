@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getPublishedPosts, Post } from '../firebase/posts';
+import { getPublishedPosts } from '../firebase/posts';
+import type { Post } from '../firebase/posts';
 import { filterPosts } from '../components/blog/filterPosts';
 import { PostCard } from '../components/blog/PostCard';
 
