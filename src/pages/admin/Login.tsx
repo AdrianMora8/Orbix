@@ -32,12 +32,12 @@ export function Login() {
         <form onSubmit={handleSubmit} className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
           <label htmlFor="email" className="block text-sm text-slate mb-2">Email</label>
           <input id="email" value={email} onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone outline-none focus:border-orbix-blue mb-5" />
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone outline-none focus:border-orbix-violet mb-5" />
           <label htmlFor="password" className="block text-sm text-slate mb-2">Contraseña</label>
           <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone outline-none focus:border-orbix-blue mb-6" />
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone outline-none focus:border-orbix-violet mb-6" />
           {error && <p className="text-sm text-red-400 mb-4">{error}</p>}
-          <button type="submit" className="w-full bg-orbix-blue text-bone rounded-xl py-3.5 font-display font-semibold">
+          <button type="submit" className="w-full bg-orbix-violet text-bone rounded-xl py-3.5 font-display font-semibold">
             Ingresar
           </button>
         </form>

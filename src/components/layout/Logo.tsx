@@ -4,9 +4,9 @@ type LogoProps = {
 };
 
 export function Logo({ variant = 'wordmark', theme = 'dark' }: LogoProps) {
-  const ring = '#2E6BFF';
-  const cross = '#5FD4D0';
-  const text = theme === 'dark' ? '#F5F7FA' : '#0A1128';
+  const ring = '#7C3AED';
+  const cross = '#B6FF3C';
+  const text = theme === 'dark' ? '#F5F5FA' : '#14121F';
 
   return (
     <div className="flex items-center gap-3">

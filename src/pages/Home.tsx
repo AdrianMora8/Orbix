@@ -9,10 +9,10 @@ import { TechOrbit } from '../components/home/TechOrbit';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const stats = [
-  { num: '24', label: 'Proyectos entregados' },
-  { num: '18', label: 'Tecnologías dominadas' },
-  { num: '12', label: 'Integrantes del equipo' },
-  { num: '6', label: 'Semestres activos' },
+  { num: '24', label: 'Proyectos entregados', icon: 'M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z' },
+  { num: '18', label: 'Tecnologías dominadas', icon: 'M9 4 3 12l6 8M15 4l6 8-6 8' },
+  { num: '12', label: 'Integrantes del equipo', icon: 'M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2.5 2-4.5 4.5-4.5S23 17.5 23 20' },
+  { num: '6', label: 'Semestres activos', icon: 'M4 5h16M6 3v4M18 3v4M4 9h16v11H4V9Z' },
 ];
 
 const caseStudies = [
@@ -33,15 +33,15 @@ export function Home() {
 
   return (
     <div>
-      <section className="relative overflow-hidden px-8 py-28">
+      <section className="orbit-mesh-bg relative overflow-hidden px-8 py-28">
         <div className="relative max-w-6xl mx-auto grid gap-10 items-center" style={{ gridTemplateColumns: '1.4fr 1fr' }}>
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-orbix-cyan/30 rounded-full bg-orbix-cyan/5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-orbix-cyan" />
-              <span className="text-sm text-orbix-cyan">Estudio universitario de desarrollo de software</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-orbix-lime/30 rounded-full bg-orbix-lime/5 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-orbix-lime" />
+              <span className="text-sm text-orbix-lime">Estudio universitario de desarrollo de software</span>
             </div>
             <h1 className="font-display font-bold text-6xl leading-none tracking-tight mb-5">
-              Código con <span className="text-orbix-blue">propósito</span>.
+              Código con <span className="text-orbix-violet">propósito</span>.
             </h1>
             <p className="text-lg text-slate max-w-xl mb-9">
               Somos ORBIX Studio. Diseñamos y construimos soluciones de software que resuelven problemas reales, aplicando en cada proyecto los estándares de calidad de la industria.
@@ -61,37 +61,50 @@ export function Home() {
         <TechOrbit />
       </section>
 
-      <section ref={mission.ref} className={`${mission.className} max-w-6xl mx-auto px-8 py-16 grid gap-6`} style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))' }}>
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-9">
-          <h3 className="font-display font-semibold text-2xl mb-3">Misión</h3>
-          <p className="text-slate leading-relaxed">Diseñar y construir soluciones de software que resuelven problemas reales, aplicando en cada proyecto académico los estándares de calidad de la industria.</p>
-        </div>
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-9">
-          <h3 className="font-display font-semibold text-2xl mb-3">Visión</h3>
-          <p className="text-slate leading-relaxed">Ser un equipo referente dentro de la universidad por la calidad técnica y el impacto de nuestros proyectos de desarrollo de software.</p>
+      <section ref={mission.ref} className={`${mission.className} max-w-6xl mx-auto px-8 py-16`}>
+        <div className="relative grid gap-0 rounded-2xl border border-white/10 overflow-hidden" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))' }}>
+          <div className="p-10 bg-white/[0.04] relative">
+            <div className="w-12 h-12 rounded-full border border-orbix-violet/40 bg-orbix-violet/10 grid place-items-center mb-5">
+              <span className="w-2.5 h-2.5 rounded-full bg-orbix-violet" />
+            </div>
+            <span className="text-xs font-mono uppercase tracking-widest text-orbix-violet">01 · Misión</span>
+            <p className="text-slate leading-relaxed mt-3">Diseñar y construir soluciones de software que resuelven problemas reales, aplicando en cada proyecto académico los estándares de calidad de la industria.</p>
+          </div>
+          <div className="p-10 bg-white/[0.02] relative border-t md:border-t-0 md:border-l border-white/10">
+            <div className="w-12 h-12 rounded-full border border-orbix-lime/40 bg-orbix-lime/10 grid place-items-center mb-5">
+              <span className="w-2.5 h-2.5 rounded-full bg-orbix-lime" />
+            </div>
+            <span className="text-xs font-mono uppercase tracking-widest text-orbix-lime">02 · Visión</span>
+            <p className="text-slate leading-relaxed mt-3">Ser un equipo referente dentro de la universidad por la calidad técnica y el impacto de nuestros proyectos de desarrollo de software.</p>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-orbix-blue/5">
-        <div className="max-w-6xl mx-auto px-8 py-14 grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))' }}>
+      <section className="border-y border-white/10 bg-orbix-violet/5">
+        <div className="max-w-6xl mx-auto px-8 py-14 grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))' }}>
           {stats.map((s) => (
-            <div key={s.label}>
-              <div className="font-display font-bold text-5xl">{s.num}</div>
-              <div className="text-sm text-slate mt-2">{s.label}</div>
+            <div key={s.label} className="flex items-start gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.03]">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-orbix-lime flex-none mt-1">
+                <path d={s.icon} />
+              </svg>
+              <div>
+                <div className="font-display font-bold text-3xl">{s.num}</div>
+                <div className="text-sm text-slate mt-1">{s.label}</div>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       <section ref={cases.ref} className={`${cases.className} orbit-starfield max-w-6xl mx-auto px-8 py-16`}>
-        <span className="text-sm font-semibold tracking-widest text-orbix-blue uppercase">Casos de estudio</span>
+        <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Casos de estudio</span>
         <h2 className="font-display font-bold text-4xl mt-3 mb-9">Proyectos que ya construimos.</h2>
         <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
           {caseStudies.map((c) => (
             <div key={c.title} className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-orbix-blue/40 to-orbix-cyan/15" />
+              <div className="aspect-video bg-gradient-to-br from-orbix-violet/40 to-orbix-lime/15" />
               <div className="p-6">
-                <span className="text-xs font-semibold text-orbix-cyan bg-orbix-cyan/10 rounded-full px-2.5 py-1">{c.tag}</span>
+                <span className="text-xs font-semibold text-orbix-lime bg-orbix-lime/10 rounded-full px-2.5 py-1">{c.tag}</span>
                 <h3 className="font-display font-semibold text-lg mt-3 mb-2">{c.title}</h3>
                 <p className="text-sm text-slate">{c.desc}</p>
               </div>
@@ -103,24 +116,24 @@ export function Home() {
       <section ref={blogSection.ref} className={`${blogSection.className} max-w-6xl mx-auto px-8 py-16`}>
         <div className="flex items-end justify-between gap-5 flex-wrap mb-9">
           <div>
-            <span className="text-sm font-semibold tracking-widest text-orbix-blue uppercase">Blog</span>
+            <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Blog</span>
             <h2 className="font-display font-bold text-4xl mt-3">Últimos posts</h2>
           </div>
-          <Link to="/blog" className="inline-flex items-center gap-2 text-orbix-cyan border border-orbix-cyan/30 rounded-xl px-5 py-3 font-display font-semibold text-sm">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-orbix-lime border border-orbix-lime/30 rounded-xl px-5 py-3 font-display font-semibold text-sm">
             Ver todos los posts
           </Link>
         </div>
-        <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))' }}>
+        <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))' }}>
           {posts.map((p) => (
             <Link key={p.id} to={`/blog/${p.slug}`} className="block bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden">
               {p.coverImageUrl ? (
                 <div className="aspect-video bg-cover bg-center" style={{ backgroundImage: `url(${p.coverImageUrl})` }} />
               ) : (
-                <div className="aspect-video bg-gradient-to-br from-orbix-blue/40 to-orbix-cyan/15" />
+                <div className="aspect-video bg-gradient-to-br from-orbix-violet/40 to-orbix-lime/15" />
               )}
               <div className="p-6">
                 <div className="flex items-center gap-2.5 mb-3">
-                  <span className="text-xs font-semibold text-orbix-cyan bg-orbix-cyan/10 rounded-full px-2.5 py-1">{p.tags[0]}</span>
+                  <span className="text-xs font-semibold text-orbix-lime bg-orbix-lime/10 rounded-full px-2.5 py-1">{p.tags[0]}</span>
                   <span className="text-xs text-slate">{formatDate(p.createdAt)}</span>
                 </div>
                 <h3 className="font-display font-semibold text-lg mb-2">{p.title}</h3>
@@ -132,9 +145,9 @@ export function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-8 pb-20">
-        <div className="rounded-3xl p-14 bg-gradient-to-br from-orbix-blue/90 to-orbix-blue/50 border border-orbix-cyan/30">
-          <h2 className="font-display font-bold text-4xl mb-3 max-w-md">¿Tenés un proyecto en mente? Hablemos.</h2>
-          <p className="text-bone/90 mb-7 max-w-xl">Contanos qué querés construir y te respondemos con una propuesta técnica.</p>
+        <div className="rounded-3xl p-14 bg-gradient-to-br from-orbix-violet/90 to-orbix-violet/50 border border-orbix-lime/30">
+          <h2 className="font-display font-bold text-4xl mb-3 max-w-md">¿Tienes un proyecto en mente? Hablemos.</h2>
+          <p className="text-bone/90 mb-7 max-w-xl">Cuéntanos qué quieres construir y te respondemos con una propuesta técnica.</p>
           <Link to="/contacto">
             <Button className="!bg-bone !text-navy hover:!bg-navy hover:!text-bone">Ir a contacto</Button>
           </Link>

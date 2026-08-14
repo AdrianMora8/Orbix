@@ -24,10 +24,10 @@ export function BlogPost() {
       {post.coverImageUrl ? (
         <div className="aspect-[21/8] min-h-[220px] bg-cover bg-center" style={{ backgroundImage: `url(${post.coverImageUrl})` }} />
       ) : (
-        <div className="aspect-[21/8] min-h-[220px] bg-gradient-to-br from-orbix-blue/50 to-orbix-cyan/20" />
+        <div className="aspect-[21/8] min-h-[220px] bg-gradient-to-br from-orbix-violet/50 to-orbix-lime/20" />
       )}
       <div className="max-w-3xl mx-auto px-8 py-14">
-        <Link to="/blog" className="inline-flex items-center gap-1.5 text-orbix-cyan text-sm font-semibold mb-6">
+        <Link to="/blog" className="inline-flex items-center gap-1.5 text-orbix-lime text-sm font-semibold mb-6">
           ← Volver al blog
         </Link>
         <div className="flex items-center gap-2.5 mb-4">
@@ -37,14 +37,14 @@ export function BlogPost() {
         </div>
         <h1 className="font-display font-bold text-5xl leading-tight mb-6">{post.title}</h1>
         <div className="flex items-center gap-3 pb-7 mb-8 border-b border-white/10">
-          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-orbix-blue to-orbix-cyan" />
+          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime" />
           <div>
             <div className="font-semibold text-bone">{post.authorName}</div>
             <div className="text-sm text-slate">ORBIX Studio</div>
           </div>
         </div>
         <div
-          className="text-[17.5px] leading-8 text-[#c9cfda] [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-10 [&_h2]:mb-4 [&_p]:mb-6 [&_blockquote]:border-l-4 [&_blockquote]:border-orbix-blue [&_blockquote]:pl-6 [&_blockquote]:font-display [&_blockquote]:text-xl"
+          className="text-[17.5px] leading-8 text-[#c9cfda] [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-10 [&_h2]:mb-4 [&_p]:mb-6 [&_blockquote]:border-l-4 [&_blockquote]:border-orbix-violet [&_blockquote]:pl-6 [&_blockquote]:font-display [&_blockquote]:text-xl"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
         <div className="flex gap-2.5 flex-wrap mt-9">

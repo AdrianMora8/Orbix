@@ -37,7 +37,7 @@ export function Dashboard() {
             <h1 className="font-display font-bold text-3xl mb-1.5">Mis posts</h1>
             <p className="text-sm text-slate">{posts.length} artículos</p>
           </div>
-          <Link to="/admin/editor" className="bg-orbix-blue text-bone rounded-xl px-5 py-3 font-display font-semibold text-sm">
+          <Link to="/admin/editor" className="bg-orbix-violet text-bone rounded-xl px-5 py-3 font-display font-semibold text-sm">
             + Nuevo post
           </Link>
         </div>
@@ -49,7 +49,7 @@ export function Dashboard() {
               <div className="text-sm text-slate">{formatDate(p.createdAt)}</div>
               <div>
                 <span className={`text-xs font-semibold rounded-full px-2.5 py-1 ${
-                  p.status === 'published' ? 'bg-orbix-cyan/15 text-orbix-cyan' : 'bg-slate/15 text-slate'
+                  p.status === 'published' ? 'bg-orbix-lime/15 text-orbix-lime' : 'bg-slate/15 text-slate'
                 }`}>
                   {p.status === 'published' ? 'Publicado' : 'Borrador'}
                 </span>

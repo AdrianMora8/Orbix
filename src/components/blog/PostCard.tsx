@@ -8,13 +8,13 @@ export function PostCard({ post }: { post: Post }) {
   return (
     <Link
       to={`/blog/${post.slug}`}
-      className="block bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden hover:border-orbix-cyan/40"
+      className="block bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden hover:border-orbix-lime/40"
       style={{ borderTop: `2px solid ${color}` }}
     >
       {post.coverImageUrl ? (
         <div className="aspect-video bg-cover bg-center" style={{ backgroundImage: `url(${post.coverImageUrl})` }} />
       ) : (
-        <div className="aspect-video bg-gradient-to-br from-orbix-blue/40 to-orbix-cyan/15" />
+        <div className="aspect-video bg-gradient-to-br from-orbix-violet/40 to-orbix-lime/15" />
       )}
       <div className="p-6">
         <div className="flex items-center gap-2.5 mb-3">
@@ -25,7 +25,7 @@ export function PostCard({ post }: { post: Post }) {
         <h3 className="font-display font-semibold text-lg mb-2.5">{post.title}</h3>
         <p className="text-sm text-slate mb-4">{post.summary}</p>
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orbix-blue to-orbix-cyan" />
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime" />
           <span className="text-sm text-slate">{post.authorName}</span>
         </div>
       </div>

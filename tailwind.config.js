@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#05070f',
-        navy: '#0A1128',
-        'orbix-blue': '#2E6BFF',
-        'orbix-cyan': '#5FD4D0',
-        bone: '#F5F7FA',
-        slate: '#8A94A6',
+        bg: '#0A0A12',
+        navy: '#14121F',
+        'orbix-violet': '#7C3AED',
+        'orbix-lime': '#B6FF3C',
+        bone: '#F5F5FA',
+        slate: '#948FA3',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'sans-serif'],

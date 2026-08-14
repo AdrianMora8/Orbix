@@ -17,7 +17,7 @@ export function StatusPanel() {
         {readings.map((r) => (
           <div key={r.label} className="flex items-center justify-between text-sm">
             <span className="text-slate">{r.label}</span>
-            <span className="text-orbix-cyan font-semibold">{r.value}</span>
+            <span className="text-orbix-lime font-semibold">{r.value}</span>
           </div>
         ))}
       </div>

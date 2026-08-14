@@ -6,9 +6,9 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const styles = {
-  primary: 'bg-orbix-blue text-bone hover:bg-orbix-cyan hover:text-navy',
-  secondary: 'bg-transparent text-bone border border-white/20 hover:border-orbix-cyan hover:text-orbix-cyan',
-  ghost: 'bg-transparent text-orbix-cyan hover:text-orbix-blue px-0',
+  primary: 'bg-orbix-violet text-bone hover:bg-orbix-lime hover:text-navy',
+  secondary: 'bg-transparent text-bone border border-white/20 hover:border-orbix-lime hover:text-orbix-lime',
+  ghost: 'bg-transparent text-orbix-lime hover:text-orbix-violet px-0',
 };
 
 export function Button({ variant = 'primary', className = '', children, ...rest }: ButtonProps) {

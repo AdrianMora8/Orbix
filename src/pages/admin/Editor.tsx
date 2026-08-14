@@ -78,7 +78,7 @@ export function Editor() {
           <button onClick={() => save('draft')} className="border border-white/15 text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm">
             Guardar borrador
           </button>
-          <button onClick={() => save('published')} className="bg-orbix-blue text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm">
+          <button onClick={() => save('published')} className="bg-orbix-violet text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm">
             Publicar
           </button>
         </div>
@@ -112,7 +112,7 @@ export function Editor() {
           className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-bone text-sm mb-3" />
         <div className="flex gap-2 flex-wrap">
           {tags.map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5 text-sm text-orbix-cyan bg-orbix-cyan/10 border border-orbix-cyan/30 rounded-full px-3.5 py-1.5">
+            <span key={t} className="inline-flex items-center gap-1.5 text-sm text-orbix-lime bg-orbix-lime/10 border border-orbix-lime/30 rounded-full px-3.5 py-1.5">
               {t}
               <button onClick={() => setTags((prev) => prev.filter((x) => x !== t))} className="opacity-70">×</button>
             </span>

@@ -14,7 +14,7 @@ export function TechOrbit() {
           return (
             <span
               key={tech}
-              className="orbit-ring-spin-reverse absolute text-xs font-mono text-orbix-cyan bg-navy border border-orbix-cyan/30 rounded-full px-2.5 py-1 whitespace-nowrap"
+              className="orbit-ring-spin-reverse absolute text-xs font-mono text-orbix-lime bg-navy border border-orbix-lime/30 rounded-full px-2.5 py-1 whitespace-nowrap"
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
@@ -27,7 +27,7 @@ export function TechOrbit() {
         })}
       </div>
       <div className="absolute inset-0 grid place-items-center">
-        <span className="w-2.5 h-2.5 rounded-full bg-orbix-blue shadow-[0_0_16px_4px_rgba(46,107,255,0.5)]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-orbix-violet shadow-[0_0_16px_4px_rgba(124,58,237,0.5)]" />
       </div>
     </div>
   );

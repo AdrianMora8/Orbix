@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { margin: 0; padding: 0; background: #05070f; }
+html, body { margin: 0; padding: 0; background: #0A0A12; }
 body { -webkit-font-smoothing: antialiased; }
-::selection { background: rgba(46,107,255,0.35); }
+::selection { background: rgba(124,58,237,0.35); }
 
 .orbit-reveal {
   opacity: 0;
@@ -16,8 +16,18 @@ body { -webkit-font-smoothing: antialiased; }
   transform: translateY(0);
 }
 
+.orbit-mesh-bg {
+  background-image:
+    radial-gradient(600px circle at 15% 20%, rgba(124, 58, 237, 0.35), transparent 60%),
+    radial-gradient(500px circle at 85% 10%, rgba(182, 255, 60, 0.12), transparent 55%),
+    radial-gradient(700px circle at 70% 80%, rgba(124, 58, 237, 0.18), transparent 60%),
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: auto, auto, auto, 44px 44px, 44px 44px;
+}
+
 .orbit-starfield {
-  background-image: radial-gradient(rgba(95, 212, 208, 0.35) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(182, 255, 60, 0.25) 1px, transparent 1px);
   background-size: 28px 28px;
   background-position: 0 0;
 }

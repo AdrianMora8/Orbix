@@ -19,13 +19,13 @@ export function Navbar() {
 
       <div className="ml-auto hidden md:flex items-center gap-7">
         {links.map((l) => (
-          <Link key={l.to} to={l.to} className="text-bone text-[15px] font-medium hover:text-orbix-cyan">
+          <Link key={l.to} to={l.to} className="text-bone text-[15px] font-medium hover:text-orbix-lime">
             {l.label}
           </Link>
         ))}
         <Link
           to="/admin/login"
-          className="inline-flex items-center gap-2 bg-orbix-blue text-bone rounded-xl px-5 py-2.5 font-display font-semibold text-sm hover:bg-orbix-cyan hover:text-navy"
+          className="inline-flex items-center gap-2 bg-orbix-violet text-bone rounded-xl px-5 py-2.5 font-display font-semibold text-sm hover:bg-orbix-lime hover:text-navy"
         >
           Ingresar
         </Link>
@@ -46,7 +46,7 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link to="/admin/login" onClick={() => setOpen(false)} className="bg-orbix-blue text-bone font-display font-semibold text-base px-3.5 py-3 rounded-lg text-center">
+          <Link to="/admin/login" onClick={() => setOpen(false)} className="bg-orbix-violet text-bone font-display font-semibold text-base px-3.5 py-3 rounded-lg text-center">
             Ingresar
           </Link>
         </div>
