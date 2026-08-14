@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '../../components/layout/Logo';
 import { useAuth } from '../../firebase/auth';
 
@@ -22,7 +22,10 @@ export function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center px-6">
+    <div className="orbit-mesh-bg min-h-screen bg-bg flex items-center justify-center px-6 relative">
+      <Link to="/" className="absolute top-6 left-6 inline-flex items-center gap-1.5 text-sm text-slate hover:text-orbix-lime">
+        ← Volver al inicio
+      </Link>
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-9">
           <Logo variant="icon" />

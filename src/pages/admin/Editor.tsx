@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createPost, updatePost, getPostById } from '../../firebase/posts';
 import { useAuth } from '../../firebase/auth';
 import { uploadCoverImage } from '../../utils/cloudinary';
@@ -73,12 +73,13 @@ export function Editor() {
   return (
     <div>
       <div className="flex items-center gap-4 px-7 py-4 bg-navy/85 border-b border-white/10">
+        <Link to="/admin" className="text-slate hover:text-orbix-lime text-sm">← Volver</Link>
         <span className="font-display font-semibold text-sm">{id ? 'Editar post' : 'Nuevo post'}</span>
         <div className="ml-auto flex gap-2.5">
-          <button onClick={() => save('draft')} className="border border-white/15 text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm">
+          <button onClick={() => save('draft')} className="border border-white/15 text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm hover:border-orbix-lime/40 hover:text-orbix-lime">
             Guardar borrador
           </button>
-          <button onClick={() => save('published')} className="bg-orbix-violet text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm">
+          <button onClick={() => save('published')} className="bg-orbix-violet text-bone rounded-lg px-4.5 py-2.5 font-display font-semibold text-sm hover:bg-orbix-lime hover:text-navy">
             Publicar
           </button>
         </div>

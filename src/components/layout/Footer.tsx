@@ -42,8 +42,10 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-white/5 px-8 py-5 text-center text-sm text-slate">
-        © 2026 ORBIX Studio · Proyecto académico
+      <div className="border-t border-white/5 px-8 py-5 flex items-center justify-center gap-4 text-sm text-slate">
+        <span>© 2026 ORBIX Studio · Proyecto académico</span>
+        <span className="text-white/15">·</span>
+        <Link to="/admin/login" className="text-xs text-slate/70 hover:text-orbix-lime">Acceso equipo</Link>
       </div>
     </div>
   );
