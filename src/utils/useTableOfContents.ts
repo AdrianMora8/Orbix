@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 export type TocSection = { id: string; text: string };
 
 export function useTableOfContents(contentRef: React.RefObject<HTMLElement | null>, deps: unknown[]) {
   const [sections, setSections] = useState<TocSection[]>([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = contentRef.current;
     if (!el) return;
     const headings = Array.from(el.querySelectorAll('h2'));
