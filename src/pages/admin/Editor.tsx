@@ -151,6 +151,18 @@ export function Editor() {
           botones de arriba para convertir el bloque donde está el cursor (título, lista, tabla, etc.). Podés mezclar
           todos los que quieras, en el orden que quieras.
         </p>
+        <div className="flex justify-end mb-2">
+          <button
+            type="button"
+            onClick={() => {
+              const html = window.prompt('Pegá el HTML del contenido:');
+              if (html) editor?.commands.setContent(html, { emitUpdate: true });
+            }}
+            className="text-xs text-slate hover:text-orbix-lime border border-white/10 rounded-lg px-3 py-1.5"
+          >
+            Importar HTML
+          </button>
+        </div>
         <EditorToolbar editor={editor} onUploadImage={handleContentImageUpload} />
         {insertingImage && <p className="text-xs text-orbix-lime mb-2">Subiendo imagen…</p>}
         <div className="border border-white/10 rounded-b-xl overflow-hidden mb-6">
