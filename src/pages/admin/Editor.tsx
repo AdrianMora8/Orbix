@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import TiptapImage from '@tiptap/extension-image';
+import TiptapLink from '@tiptap/extension-link';
+import Table from '@tiptap/extension-table';
+import TableRow from '@tiptap/extension-table-row';
+import TableHeader from '@tiptap/extension-table-header';
+import TableCell from '@tiptap/extension-table-cell';
+import Youtube from '@tiptap/extension-youtube';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createPost, updatePost, getPostById } from '../../firebase/posts';
 import { useAuth } from '../../firebase/auth';
 import { uploadCoverImage } from '../../utils/cloudinary';
+import { EditorToolbar } from './EditorToolbar';
 
 export function Editor() {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +25,19 @@ export function Editor() {
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState('');
 
-  const editor = useEditor({ extensions: [StarterKit], content: '' });
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      TiptapImage,
+      TiptapLink.configure({ openOnClick: false }),
+      Table.configure({ resizable: false }),
+      TableRow,
+      TableHeader,
+      TableCell,
+      Youtube.configure({ nocookie: true }),
+    ],
+    content: '',
+  });
 
   useEffect(() => {
     if (!id) return;
@@ -41,6 +61,11 @@ export function Editor() {
     } finally {
       setUploading(false);
     }
+  }
+
+  async function handleContentImageUpload(file: File) {
+    const url = await uploadCoverImage(file);
+    editor?.chain().focus().setImage({ src: url }).run();
   }
 
   function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -104,8 +129,20 @@ export function Editor() {
         )}
 
         <label className="block text-sm font-semibold text-slate mb-2">Contenido</label>
-        <div className="border border-white/10 rounded-xl overflow-hidden mb-6">
-          <EditorContent editor={editor} className="min-h-[220px] px-4 py-4 text-[#c9cfda] prose prose-invert max-w-none" />
+        <EditorToolbar editor={editor} onUploadImage={handleContentImageUpload} />
+        <div className="border border-white/10 rounded-b-xl overflow-hidden mb-6">
+          <EditorContent
+            editor={editor}
+            className="min-h-[320px] px-4 py-4 text-[#c9cfda] max-w-none
+              [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-6 [&_h2]:mb-3
+              [&_h3]:font-display [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:text-bone [&_h3]:mt-5 [&_h3]:mb-2
+              [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-1
+              [&_blockquote]:border-l-4 [&_blockquote]:border-orbix-violet [&_blockquote]:pl-4 [&_blockquote]:italic
+              [&_code]:bg-white/10 [&_code]:rounded [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-sm
+              [&_pre]:bg-black/60 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre_code]:bg-transparent
+              [&_table]:border-collapse [&_table]:w-full [&_th]:border [&_th]:border-white/15 [&_th]:p-2 [&_td]:border [&_td]:border-white/15 [&_td]:p-2
+              [&_img]:rounded-lg [&_img]:max-w-full"
+          />
         </div>
 
         <label htmlFor="tagInput" className="block text-sm font-semibold text-slate mb-2.5">Agregar tag</label>
