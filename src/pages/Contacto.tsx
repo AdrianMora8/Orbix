@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { sendContactMessage } from '../firebase/messages';
 import { StatusBadge } from '../components/ui/StatusBadge';
+import { ScrollCue } from '../components/ui/ScrollCue';
 
 const SUBJECTS = ['Nuevo proyecto', 'Consulta general', 'Colaboración académica', 'Otro'];
 const WHATSAPP_NUMBER = '593000000000';
@@ -39,16 +40,19 @@ export function Contacto() {
 
   return (
     <div>
-      <section className="border-b border-white/10 px-8 py-16">
-        <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
+        <div className="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-4">
           <div>
-            <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Contacto</span>
-            <h1 className="font-display font-bold text-5xl mt-3">Hablemos de tu proyecto</h1>
+            <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Contacto</span>
+            <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3">Hablemos de tu proyecto</h1>
           </div>
-          <StatusBadge color={available ? '#B6FF3C' : '#948FA3'} pulse={available}>
-            {available ? 'Disponible ahora' : 'Fuera de horario'}
-          </StatusBadge>
+          <div className="orbit-enter orbit-enter-3">
+            <StatusBadge color={available ? '#B6FF3C' : '#948FA3'} pulse={available}>
+              {available ? 'Disponible ahora' : 'Fuera de horario'}
+            </StatusBadge>
+          </div>
         </div>
+        <ScrollCue />
       </section>
 
       <section className="max-w-6xl mx-auto px-8 py-16 grid gap-12" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))' }}>

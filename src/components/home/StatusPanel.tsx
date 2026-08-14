@@ -8,7 +8,7 @@ const readings = [
 
 export function StatusPanel() {
   return (
-    <div className="w-full max-w-xs bg-white/[0.04] border border-white/10 rounded-2xl p-5 font-mono">
+    <div className="orbit-glow-pulse w-full max-w-xs bg-white/[0.04] border border-white/10 rounded-2xl p-5 font-mono">
       <div className="flex items-center justify-between mb-4">
         <span className="text-xs uppercase tracking-widest text-slate">Estado del sistema</span>
         <StatusBadge pulse>En línea</StatusBadge>

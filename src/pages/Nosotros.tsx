@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
+import { ScrollCue } from '../components/ui/ScrollCue';
 
 type Discipline = 'Todos' | 'Frontend' | 'Backend' | 'DevOps' | 'QA';
 
@@ -27,14 +28,15 @@ export function Nosotros() {
 
   return (
     <div>
-      <section className="border-b border-white/10 px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Nosotros</span>
-          <h1 className="font-display font-bold text-5xl mt-3 mb-4">El equipo detrás de ORBIX</h1>
-          <p className="text-lg text-slate max-w-2xl">
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
+        <div className="max-w-6xl mx-auto w-full">
+          <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Nosotros</span>
+          <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3 mb-4">El equipo detrás de ORBIX</h1>
+          <p className="orbit-enter orbit-enter-3 text-lg text-slate max-w-2xl">
             Somos un grupo de estudiantes que decidimos tratar cada proyecto académico como si fuera un proyecto real, con los mismos estándares de calidad de la industria.
           </p>
         </div>
+        <ScrollCue />
       </section>
 
       <section className="max-w-6xl mx-auto px-8 py-16">

@@ -6,6 +6,8 @@ import type { Post } from '../firebase/posts';
 import { formatDate } from '../utils/date';
 import { StatusPanel } from '../components/home/StatusPanel';
 import { TechOrbit } from '../components/home/TechOrbit';
+import { StatCard } from '../components/home/StatCard';
+import { ScrollCue } from '../components/ui/ScrollCue';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 const stats = [
@@ -33,28 +35,29 @@ export function Home() {
 
   return (
     <div>
-      <section className="orbit-mesh-bg relative overflow-hidden px-8 py-28">
-        <div className="relative max-w-6xl mx-auto grid gap-10 items-center" style={{ gridTemplateColumns: '1.4fr 1fr' }}>
+      <section className="orbit-hero orbit-mesh-bg relative overflow-hidden px-8 flex items-center">
+        <div className="relative max-w-6xl mx-auto grid gap-10 items-center w-full" style={{ gridTemplateColumns: '1.4fr 1fr' }}>
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-orbix-lime/30 rounded-full bg-orbix-lime/5 mb-6">
+            <div className="orbit-enter orbit-enter-1 inline-flex items-center gap-2 px-3.5 py-1.5 border border-orbix-lime/30 rounded-full bg-orbix-lime/5 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-orbix-lime" />
               <span className="text-sm text-orbix-lime">Estudio universitario de desarrollo de software</span>
             </div>
-            <h1 className="font-display font-bold text-6xl leading-none tracking-tight mb-5">
+            <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-6xl leading-none tracking-tight mb-5">
               Código con <span className="text-orbix-violet">propósito</span>.
             </h1>
-            <p className="text-lg text-slate max-w-xl mb-9">
+            <p className="orbit-enter orbit-enter-3 text-lg text-slate max-w-xl mb-9">
               Somos ORBIX Studio. Diseñamos y construimos soluciones de software que resuelven problemas reales, aplicando en cada proyecto los estándares de calidad de la industria.
             </p>
-            <div className="flex flex-wrap gap-3.5">
+            <div className="orbit-enter orbit-enter-4 flex flex-wrap gap-3.5">
               <Link to="/servicios"><Button variant="primary">Ver servicios</Button></Link>
               <Link to="/nosotros"><Button variant="secondary">Conócenos</Button></Link>
             </div>
           </div>
-          <div className="hidden md:flex justify-center">
+          <div className="orbit-enter orbit-enter-4 hidden md:flex justify-center">
             <StatusPanel />
           </div>
         </div>
+        <ScrollCue />
       </section>
 
       <section className="py-14 border-y border-white/10">
@@ -64,14 +67,14 @@ export function Home() {
       <section ref={mission.ref} className={`${mission.className} max-w-6xl mx-auto px-8 py-16`}>
         <div className="relative grid gap-0 rounded-2xl border border-white/10 overflow-hidden" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))' }}>
           <div className="p-10 bg-white/[0.04] relative">
-            <div className="w-12 h-12 rounded-full border border-orbix-violet/40 bg-orbix-violet/10 grid place-items-center mb-5">
+            <div className="orbit-radar w-12 h-12 rounded-full border border-orbix-violet/40 bg-orbix-violet/10 grid place-items-center mb-5 text-orbix-violet">
               <span className="w-2.5 h-2.5 rounded-full bg-orbix-violet" />
             </div>
             <span className="text-xs font-mono uppercase tracking-widest text-orbix-violet">01 · Misión</span>
             <p className="text-slate leading-relaxed mt-3">Diseñar y construir soluciones de software que resuelven problemas reales, aplicando en cada proyecto académico los estándares de calidad de la industria.</p>
           </div>
           <div className="p-10 bg-white/[0.02] relative border-t md:border-t-0 md:border-l border-white/10">
-            <div className="w-12 h-12 rounded-full border border-orbix-lime/40 bg-orbix-lime/10 grid place-items-center mb-5">
+            <div className="orbit-radar w-12 h-12 rounded-full border border-orbix-lime/40 bg-orbix-lime/10 grid place-items-center mb-5 text-orbix-lime">
               <span className="w-2.5 h-2.5 rounded-full bg-orbix-lime" />
             </div>
             <span className="text-xs font-mono uppercase tracking-widest text-orbix-lime">02 · Visión</span>
@@ -83,15 +86,7 @@ export function Home() {
       <section className="border-y border-white/10 bg-orbix-violet/5">
         <div className="max-w-6xl mx-auto px-8 py-14 grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))' }}>
           {stats.map((s) => (
-            <div key={s.label} className="flex items-start gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.03]">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-orbix-lime flex-none mt-1">
-                <path d={s.icon} />
-              </svg>
-              <div>
-                <div className="font-display font-bold text-3xl">{s.num}</div>
-                <div className="text-sm text-slate mt-1">{s.label}</div>
-              </div>
-            </div>
+            <StatCard key={s.label} num={s.num} label={s.label} icon={s.icon} />
           ))}
         </div>
       </section>
@@ -145,11 +140,11 @@ export function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-8 pb-20">
-        <div className="rounded-3xl p-14 bg-gradient-to-br from-orbix-violet/90 to-orbix-violet/50 border border-orbix-lime/30">
+        <div className="orbit-mesh-bg rounded-3xl p-14 bg-navy border border-white/10">
           <h2 className="font-display font-bold text-4xl mb-3 max-w-md">¿Tienes un proyecto en mente? Hablemos.</h2>
-          <p className="text-bone/90 mb-7 max-w-xl">Cuéntanos qué quieres construir y te respondemos con una propuesta técnica.</p>
+          <p className="text-slate mb-7 max-w-xl">Cuéntanos qué quieres construir y te respondemos con una propuesta técnica.</p>
           <Link to="/contacto">
-            <Button className="!bg-bone !text-navy hover:!bg-navy hover:!text-bone">Ir a contacto</Button>
+            <Button variant="primary">Ir a contacto</Button>
           </Link>
         </div>
       </section>

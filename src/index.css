@@ -47,3 +47,52 @@ body { -webkit-font-smoothing: antialiased; }
 .orbit-ring-spin-reverse {
   animation: orbit-spin-reverse 40s linear infinite;
 }
+
+.orbit-hero {
+  min-height: calc(100vh - 65px);
+}
+
+@keyframes orbit-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.orbit-enter {
+  opacity: 0;
+  animation: orbit-fade-up 0.7s ease forwards;
+}
+.orbit-enter-1 { animation-delay: 0.05s; }
+.orbit-enter-2 { animation-delay: 0.18s; }
+.orbit-enter-3 { animation-delay: 0.31s; }
+.orbit-enter-4 { animation-delay: 0.44s; }
+
+@keyframes orbit-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.28); }
+  50% { box-shadow: 0 0 0 12px rgba(124,58,237,0); }
+}
+.orbit-glow-pulse {
+  animation: orbit-glow-pulse 3.2s ease-in-out infinite;
+}
+
+.orbit-radar {
+  position: relative;
+}
+@keyframes orbit-radar-ping {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.orbit-radar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  animation: orbit-radar-ping 2.6s ease-out infinite;
+}
+
+@keyframes orbit-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+.orbit-bounce {
+  animation: orbit-bounce 1.8s ease-in-out infinite;
+}

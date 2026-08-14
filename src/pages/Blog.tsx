@@ -3,6 +3,7 @@ import { getPublishedPosts } from '../firebase/posts';
 import type { Post } from '../firebase/posts';
 import { filterPosts } from '../components/blog/filterPosts';
 import { PostCard } from '../components/blog/PostCard';
+import { ScrollCue } from '../components/ui/ScrollCue';
 
 const TAGS = ['Todos', 'Arquitectura', 'DevOps', 'Backend', 'Frontend', 'Calidad', 'Datos'];
 
@@ -19,12 +20,13 @@ export function Blog() {
 
   return (
     <div>
-      <section className="border-b border-white/10 px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Blog</span>
-          <h1 className="font-display font-bold text-5xl mt-3 mb-4">Notas de ingeniería</h1>
-          <p className="text-lg text-slate max-w-2xl">Lo que aprendemos construyendo software real: arquitectura, prácticas, herramientas y decisiones técnicas del equipo.</p>
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
+        <div className="max-w-6xl mx-auto w-full">
+          <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Blog</span>
+          <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3 mb-4">Notas de ingeniería</h1>
+          <p className="orbit-enter orbit-enter-3 text-lg text-slate max-w-2xl">Lo que aprendemos construyendo software real: arquitectura, prácticas, herramientas y decisiones técnicas del equipo.</p>
         </div>
+        <ScrollCue />
       </section>
 
       <div className="max-w-6xl mx-auto px-8 pt-9 pb-5">

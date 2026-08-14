@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
+import { ScrollCue } from '../components/ui/ScrollCue';
+import { useScrollReveal } from '../utils/useScrollReveal';
 
 const services = [
   {
@@ -47,19 +49,23 @@ const process = [
 ];
 
 export function Servicios() {
+  const list = useScrollReveal<HTMLDivElement>();
+  const timeline = useScrollReveal<HTMLDivElement>();
+
   return (
     <div>
-      <section className="orbit-mesh-bg border-b border-white/10 px-8 py-20">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Servicios</span>
-          <h1 className="font-display font-bold text-5xl mt-3 mb-4 max-w-2xl">Cinco disciplinas, un mismo criterio técnico.</h1>
-          <p className="text-lg text-slate max-w-2xl">
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
+        <div className="max-w-6xl mx-auto w-full">
+          <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Servicios</span>
+          <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3 mb-4 max-w-2xl">Cinco disciplinas, un mismo criterio técnico.</h1>
+          <p className="orbit-enter orbit-enter-3 text-lg text-slate max-w-2xl">
             No vendemos paquetes cerrados. Cada servicio se adapta al problema concreto que tenga el proyecto — esto es lo que cubrimos y cómo lo encaramos.
           </p>
         </div>
+        <ScrollCue />
       </section>
 
-      <section className="max-w-4xl mx-auto px-8 py-14">
+      <section ref={list.ref} className={`${list.className} max-w-4xl mx-auto px-8 py-14`}>
         <div className="border border-white/10 rounded-2xl divide-y divide-white/10 overflow-hidden">
           {services.map((s) => (
             <details key={s.num} className="group open:bg-white/[0.03]">
@@ -84,7 +90,7 @@ export function Servicios() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-white/[0.02]">
+      <section ref={timeline.ref} className={`${timeline.className} border-t border-white/10 bg-white/[0.02]`}>
         <div className="max-w-4xl mx-auto px-8 py-16">
           <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Proceso</span>
           <h2 className="font-display font-bold text-4xl mt-3 mb-10">Cómo trabajamos.</h2>
