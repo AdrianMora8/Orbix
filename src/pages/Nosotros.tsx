@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { ScrollCue } from '../components/ui/ScrollCue';
 
-type Discipline = 'Todos' | 'Frontend' | 'Backend' | 'DevOps' | 'QA';
+type Discipline = 'Todos' | 'Frontend' | 'Backend' | 'Full-Stack' | 'Diseño' | 'DevOps' | 'QA';
 
 const team: { name: string; role: string; orbit: string; discipline: Discipline; github: string }[] = [
   { name: 'Integrante 1', role: 'Backend Lead', orbit: 'Sistemas distribuidos', discipline: 'Backend', github: 'https://github.com' },
   { name: 'Integrante 2', role: 'Frontend Lead', orbit: 'UI Architecture', discipline: 'Frontend', github: 'https://github.com' },
   { name: 'Integrante 3', role: 'DevOps', orbit: 'Infraestructura y CI/CD', discipline: 'DevOps', github: 'https://github.com' },
   { name: 'Integrante 4', role: 'QA & Testing', orbit: 'Calidad de software', discipline: 'QA', github: 'https://github.com' },
+  { name: 'Integrante 5', role: 'Full-Stack Developer', orbit: 'Arquitectura end-to-end', discipline: 'Full-Stack', github: 'https://github.com' },
+  { name: 'Integrante 6', role: 'UI/UX Designer', orbit: 'Diseño de producto', discipline: 'Diseño', github: 'https://github.com' },
 ];
 
-const disciplines: Discipline[] = ['Todos', 'Frontend', 'Backend', 'DevOps', 'QA'];
+const disciplines: Discipline[] = ['Todos', 'Frontend', 'Backend', 'Full-Stack', 'Diseño', 'DevOps', 'QA'];
 
 const values = [
   { title: 'Innovación', desc: 'Buscamos soluciones nuevas antes que las conocidas por defecto.' },
@@ -56,7 +58,7 @@ export function Nosotros() {
             ))}
           </div>
         </div>
-        <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))' }}>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((m, i) => (
             <div key={m.name} className="bg-white/[0.04] border border-white/10 rounded-2xl p-7 relative">
               <span className="absolute top-5 right-6 text-xs font-mono text-slate">{String(i + 1).padStart(2, '0')}</span>
