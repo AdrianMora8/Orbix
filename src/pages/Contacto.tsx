@@ -4,7 +4,7 @@ import { StatusBadge } from '../components/ui/StatusBadge';
 import { ScrollCue } from '../components/ui/ScrollCue';
 
 const SUBJECTS = ['Nuevo proyecto', 'Consulta general', 'Colaboración académica', 'Otro'];
-const WHATSAPP_NUMBER = '593000000000';
+const WHATSAPP_NUMBER = '593963224413';
 
 function isOfficeHoursNow(): boolean {
   const now = new Date();
@@ -34,7 +34,7 @@ export function Contacto() {
   }
 
   function whatsappHref() {
-    const text = encodeURIComponent(`Hola ORBIX Studio, soy ${name || '...'} y quiero hablar sobre: ${subject || 'un proyecto'}.`);
+    const text = encodeURIComponent(`Hola ORBIX, soy ${name || '...'} y quiero hablar sobre: ${subject || 'un proyecto'}.`);
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
   }
 
@@ -103,12 +103,18 @@ export function Contacto() {
         <div>
           <h2 className="font-display font-semibold text-xl mb-5">Información</h2>
           <div className="flex flex-col gap-3 text-slate mb-8">
-            <span>hola@orbix.studio</span>
-            <span>Ciudad Universitaria, Pab. III</span>
+            <span>Orbix@uta.edu.ec</span>
+            <span>Universidad Técnica de Ambato, Campus Huachi</span>
             <span>Lun a Vie · 9–18h</span>
           </div>
-          <div className="aspect-video rounded-2xl bg-white/5 border border-white/10 grid place-items-center text-slate text-sm">
-            Mapa
+          <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
+            <iframe
+              title="Ubicación ORBIX Studio"
+              src="https://www.google.com/maps?q=Universidad+Técnica+de+Ambato+Campus+Huachi&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>

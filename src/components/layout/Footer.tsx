@@ -22,8 +22,8 @@ export function Footer() {
         <div>
           <div className="font-display font-semibold text-sm mb-4 text-bone">Contacto</div>
           <div className="flex flex-col gap-3 text-sm text-slate">
-            <span>hola@orbix.studio</span>
-            <span>Ciudad Universitaria, Pab. III</span>
+            <span>Orbix@uta.edu.ec</span>
+            <span>Universidad Técnica de Ambato, Campus Huachi</span>
             <span>Lun a Vie · 9–18h</span>
           </div>
           <div className="flex items-center gap-3 mt-5">

@@ -14,6 +14,7 @@ import { useAuth } from '../../firebase/auth';
 import { uploadCoverImage } from '../../utils/cloudinary';
 import { slugify } from '../../utils/slug';
 import { EditorToolbar } from './EditorToolbar';
+import { BLOG_TAGS } from '../../utils/tags';
 
 export function Editor() {
   const { id } = useParams<{ id: string }>();
@@ -23,8 +24,7 @@ export function Editor() {
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [coverImageUrl, setCoverImageUrl] = useState('');
-  const [tags, setTags] = useState<string[]>([]);
-  const [tagInput, setTagInput] = useState('');
+  const [tag, setTag] = useState('');
 
   const editor = useEditor({
     extensions: [
@@ -47,7 +47,7 @@ export function Editor() {
       setTitle(post.title);
       setSummary(post.summary);
       setCoverImageUrl(post.coverImageUrl);
-      setTags(post.tags);
+      setTag(post.tags[0] ?? '');
       editor?.commands.setContent(post.content);
     });
   }, [id, editor]);
@@ -85,14 +85,6 @@ export function Editor() {
     }
   }
 
-  function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter' && tagInput.trim()) {
-      e.preventDefault();
-      setTags((prev) => [...prev, tagInput.trim()]);
-      setTagInput('');
-    }
-  }
-
   async function save(status: 'draft' | 'published') {
     const payload = {
       title,
@@ -101,7 +93,7 @@ export function Editor() {
       coverImageUrl,
       authorId: user!.uid,
       authorName: user!.displayName ?? user!.email ?? 'Miembro ORBIX',
-      tags,
+      tags: tag ? [tag] : [],
       status,
     };
     if (id) {
@@ -193,17 +185,12 @@ export function Editor() {
           </div>
         </div>
 
-        <label htmlFor="tagInput" className="block text-sm font-semibold text-slate mb-2.5">Agregar tag</label>
-        <input id="tagInput" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleTagKeyDown}
-          className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-bone text-sm mb-3" />
-        <div className="flex gap-2 flex-wrap">
-          {tags.map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5 text-sm text-orbix-lime bg-orbix-lime/10 border border-orbix-lime/30 rounded-full px-3.5 py-1.5">
-              {t}
-              <button onClick={() => setTags((prev) => prev.filter((x) => x !== t))} className="opacity-70">×</button>
-            </span>
-          ))}
-        </div>
+        <label htmlFor="tag" className="block text-sm font-semibold text-slate mb-2.5">Etiqueta</label>
+        <select id="tag" value={tag} onChange={(e) => setTag(e.target.value)}
+          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone text-sm mb-6">
+          <option value="" disabled>Selecciona una etiqueta</option>
+          {BLOG_TAGS.map((t) => <option key={t} value={t} className="bg-navy">{t}</option>)}
+        </select>
       </div>
     </div>
   );

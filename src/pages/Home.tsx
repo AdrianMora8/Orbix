@@ -13,20 +13,13 @@ import { useScrollReveal } from '../utils/useScrollReveal';
 const stats = [
   { num: '24', label: 'Proyectos entregados', icon: 'M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z' },
   { num: '18', label: 'Tecnologías dominadas', icon: 'M9 4 3 12l6 8M15 4l6 8-6 8' },
-  { num: '12', label: 'Integrantes del equipo', icon: 'M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2.5 2-4.5 4.5-4.5S23 17.5 23 20' },
-  { num: '6', label: 'Semestres activos', icon: 'M4 5h16M6 3v4M18 3v4M4 9h16v11H4V9Z' },
-];
-
-const caseStudies = [
-  { title: 'Sistema de gestión académica', desc: 'Plataforma para digitalizar procesos de facultad: matrículas, calificaciones y reportes.', tag: 'Full-Stack' },
-  { title: 'App de seguimiento de proyectos', desc: 'Herramienta interna para coordinar sprints y entregas entre equipos del estudio.', tag: 'Producto' },
-  { title: 'API de datos abiertos', desc: 'Servicio REST documentado para exponer datasets académicos a terceros.', tag: 'Backend' },
+  { num: '6', label: 'Integrantes del equipo', icon: 'M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2.5 2-4.5 4.5-4.5S23 17.5 23 20' },
+  { num: '7', label: 'Semestres activos', icon: 'M4 5h16M6 3v4M18 3v4M4 9h16v11H4V9Z' },
 ];
 
 export function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const mission = useScrollReveal<HTMLDivElement>();
-  const cases = useScrollReveal<HTMLDivElement>();
   const blogSection = useScrollReveal<HTMLDivElement>();
 
   useEffect(() => {
@@ -87,23 +80,6 @@ export function Home() {
         <div className="max-w-6xl mx-auto px-8 py-14 grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))' }}>
           {stats.map((s) => (
             <StatCard key={s.label} num={s.num} label={s.label} icon={s.icon} />
-          ))}
-        </div>
-      </section>
-
-      <section ref={cases.ref} className={`${cases.className} orbit-starfield max-w-6xl mx-auto px-8 py-16`}>
-        <span className="text-sm font-semibold tracking-widest text-orbix-violet uppercase">Casos de estudio</span>
-        <h2 className="font-display font-bold text-4xl mt-3 mb-9">Proyectos que ya construimos.</h2>
-        <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
-          {caseStudies.map((c) => (
-            <div key={c.title} className="bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-orbix-violet/40 to-orbix-lime/15" />
-              <div className="p-6">
-                <span className="text-xs font-semibold text-orbix-lime bg-orbix-lime/10 rounded-full px-2.5 py-1">{c.tag}</span>
-                <h3 className="font-display font-semibold text-lg mt-3 mb-2">{c.title}</h3>
-                <p className="text-sm text-slate">{c.desc}</p>
-              </div>
-            </div>
           ))}
         </div>
       </section>

@@ -1,10 +1,10 @@
 const PALETTE: Record<string, string> = {
   Arquitectura: '#A78BFA',
-  DevOps: '#B6FF3C',
   Backend: '#7C3AED',
   Frontend: '#F5A623',
-  Calidad: '#34D399',
-  Datos: '#F472B6',
+  'IA & Automatización': '#B6FF3C',
+  'Buenas Prácticas': '#34D399',
+  Herramientas: '#F472B6',
 };
 
 export function tagColor(tag: string | undefined): string {

@@ -4,8 +4,9 @@ import type { Post } from '../firebase/posts';
 import { filterPosts } from '../components/blog/filterPosts';
 import { PostCard } from '../components/blog/PostCard';
 import { ScrollCue } from '../components/ui/ScrollCue';
+import { BLOG_TAGS } from '../utils/tags';
 
-const TAGS = ['Todos', 'Arquitectura', 'DevOps', 'Backend', 'Frontend', 'Calidad', 'Datos'];
+const TAGS = ['Todos', ...BLOG_TAGS];
 
 export function Blog() {
   const [posts, setPosts] = useState<Post[]>([]);
