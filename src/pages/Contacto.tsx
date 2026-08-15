@@ -1,4 +1,5 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { sendContactMessage } from '../firebase/messages';
 import { StatusBadge } from '../components/ui/StatusBadge';
 import { ScrollCue } from '../components/ui/ScrollCue';
