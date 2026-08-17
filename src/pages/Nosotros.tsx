@@ -5,13 +5,13 @@ import { ScrollCue } from '../components/ui/ScrollCue';
 
 type Discipline = 'Todos' | 'Frontend' | 'Backend' | 'Full-Stack' | 'Diseño' | 'DevOps' | 'QA';
 
-const team: { name: string; role: string; orbit: string; discipline: Discipline; github: string }[] = [
-  { name: 'Integrante 1', role: 'Backend Lead', orbit: 'Sistemas distribuidos', discipline: 'Backend', github: 'https://github.com' },
-  { name: 'Integrante 2', role: 'Frontend Lead', orbit: 'UI Architecture', discipline: 'Frontend', github: 'https://github.com' },
-  { name: 'Integrante 3', role: 'DevOps', orbit: 'Infraestructura y CI/CD', discipline: 'DevOps', github: 'https://github.com' },
-  { name: 'Integrante 4', role: 'QA & Testing', orbit: 'Calidad de software', discipline: 'QA', github: 'https://github.com' },
-  { name: 'Integrante 5', role: 'Full-Stack Developer', orbit: 'Arquitectura end-to-end', discipline: 'Full-Stack', github: 'https://github.com' },
-  { name: 'Integrante 6', role: 'UI/UX Designer', orbit: 'Diseño de producto', discipline: 'Diseño', github: 'https://github.com' },
+const team: { name: string; role: string; orbit: string; discipline: Discipline; github: string; photo: string }[] = [
+  { name: 'Alan Puruncajas', role: 'Backend Lead', orbit: 'Sistemas distribuidos', discipline: 'Backend', github: 'https://github.com', photo: '/team/alan.jpg' },
+  { name: 'Brayan Pilla', role: 'Frontend Lead', orbit: 'UI Architecture', discipline: 'Frontend', github: 'https://github.com', photo: '/team/brayan.jpg' },
+  { name: 'Cristian Jurado', role: 'DevOps', orbit: 'Infraestructura y CI/CD', discipline: 'DevOps', github: 'https://github.com', photo: '/team/cristian.jpeg' },
+  { name: 'Julio Jacho', role: 'QA & Testing', orbit: 'Calidad de software', discipline: 'QA', github: 'https://github.com', photo: '/team/jacho.jpg' },
+  { name: 'Manuel Ramírez', role: 'Full-Stack Developer', orbit: 'Arquitectura end-to-end', discipline: 'Full-Stack', github: 'https://github.com', photo: '/team/manuel.png' },
+  { name: 'Óscar Riofrío', role: 'UI/UX Designer', orbit: 'Diseño de producto', discipline: 'Diseño', github: 'https://github.com', photo: '/team/oscar.jpeg' },
 ];
 
 const disciplines: Discipline[] = ['Todos', 'Frontend', 'Backend', 'Full-Stack', 'Diseño', 'DevOps', 'QA'];
@@ -62,7 +62,11 @@ export function Nosotros() {
           {visible.map((m, i) => (
             <div key={m.name} className="bg-white/[0.04] border border-white/10 rounded-2xl p-7 relative">
               <span className="absolute top-5 right-6 text-xs font-mono text-slate">{String(i + 1).padStart(2, '0')}</span>
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime mb-4" />
+              <img
+                src={m.photo}
+                alt={m.name}
+                className="w-16 h-16 rounded-full object-cover mb-4 bg-gradient-to-br from-orbix-violet to-orbix-lime"
+              />
               <div className="font-display font-semibold">{m.name}</div>
               <div className="text-sm text-orbix-lime mt-1">{m.role}</div>
               <div className="text-xs text-slate mt-3 uppercase tracking-wide">Órbita</div>
