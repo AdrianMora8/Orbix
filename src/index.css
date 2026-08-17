@@ -2,10 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { margin: 0; padding: 0; background: #0A0A12; }
-body { -webkit-font-smoothing: antialiased; }
+/* ─── Variables de color por tema ───────────────────────────────── */
+:root {
+  /* Modo oscuro (por defecto) */
+  --color-bg:    #0A0A12;
+  --color-navy:  #14121F;
+  --color-bone:  #F5F5FA;
+  --color-slate: #948FA3;
+}
+
+html.light {
+  /* Modo claro */
+  --color-bg:    #F4F4F8;
+  --color-navy:  #FFFFFF;
+  --color-bone:  #1A1A2E;
+  --color-slate: #5B5870;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+html, body { margin: 0; padding: 0; background: var(--color-bg); }
+body { -webkit-font-smoothing: antialiased; transition: background 0.25s ease, color 0.25s ease; }
 ::selection { background: rgba(124,58,237,0.35); }
 
+/* ─── Overrides de transparencia para modo claro ─────────────────── */
+/* En dark: bg-white/5 se ve bien. En light: usamos bg-black/5 */
+html.light .bg-white\/\[0\.04\]  { background-color: rgba(0,0,0,0.04) !important; }
+html.light .bg-white\/\[0\.03\]  { background-color: rgba(0,0,0,0.03) !important; }
+html.light .bg-white\/\[0\.02\]  { background-color: rgba(0,0,0,0.02) !important; }
+html.light .bg-white\/5          { background-color: rgba(0,0,0,0.05) !important; }
+html.light .border-white\/10     { border-color: rgba(0,0,0,0.1) !important; }
+html.light .border-white\/15     { border-color: rgba(0,0,0,0.15) !important; }
+html.light .border-white\/5      { border-color: rgba(0,0,0,0.05) !important; }
+html.light .divide-white\/10 > * + * { border-color: rgba(0,0,0,0.1) !important; }
+html.light .text-\[\#c9cfda\]    { color: #3a3850 !important; }
+html.light .bg-black\/20         { background-color: rgba(0,0,0,0.05) !important; }
+html.light .bg-black\/70         { background-color: rgba(0,0,0,0.08) !important; }
+html.light .bg-navy\/80          { background-color: rgba(255,255,255,0.85) !important; }
+html.light .bg-navy\/85          { background-color: rgba(255,255,255,0.9) !important; }
+html.light .bg-navy\/95          { background-color: rgba(255,255,255,0.97) !important; }
+html.light .border-white\/\[0\.5\] { border-color: rgba(0,0,0,0.05) !important; }
+
+/* Mesh bg en modo claro */
+html.light .orbit-mesh-bg {
+  background-image:
+    radial-gradient(600px circle at 15% 20%, rgba(124, 58, 237, 0.15), transparent 60%),
+    radial-gradient(500px circle at 85% 10%, rgba(182, 255, 60, 0.08), transparent 55%),
+    radial-gradient(700px circle at 70% 80%, rgba(124, 58, 237, 0.08), transparent 60%),
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px) !important;
+  background-size: auto, auto, auto, 44px 44px, 44px 44px;
+}
+
+/* ─── Animaciones y utilidades (iguales en ambos temas) ──────────── */
 .orbit-reveal {
   opacity: 0;
   transform: translateY(24px);

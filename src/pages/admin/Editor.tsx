@@ -24,6 +24,7 @@ export function Editor() {
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [coverImageUrl, setCoverImageUrl] = useState('');
+  const [authorPhotoUrl, setAuthorPhotoUrl] = useState('');
   const [tag, setTag] = useState('');
 
   const editor = useEditor({
@@ -47,6 +48,7 @@ export function Editor() {
       setTitle(post.title);
       setSummary(post.summary);
       setCoverImageUrl(post.coverImageUrl);
+      setAuthorPhotoUrl(post.authorPhotoUrl);
       setTag(post.tags[0] ?? '');
       editor?.commands.setContent(post.content);
     });
@@ -93,6 +95,7 @@ export function Editor() {
       coverImageUrl,
       authorId: user!.uid,
       authorName: user!.displayName ?? user!.email ?? 'Miembro ORBIX',
+      authorPhotoUrl,
       tags: tag ? [tag] : [],
       status,
     };
@@ -135,6 +138,18 @@ export function Editor() {
         {uploading && <p className="text-sm text-slate mb-4">Subiendo imagen…</p>}
         {coverImageUrl && !uploading && (
           <img src={coverImageUrl} alt="Portada" className="w-full max-h-52 object-cover rounded-xl mb-6" />
+        )}
+
+        <label htmlFor="authorPhoto" className="block text-sm font-semibold text-slate mb-2">URL foto de perfil del autor</label>
+        <input
+          id="authorPhoto"
+          value={authorPhotoUrl}
+          onChange={(e) => setAuthorPhotoUrl(e.target.value)}
+          placeholder="https://…"
+          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone text-sm mb-6"
+        />
+        {authorPhotoUrl && (
+          <img src={authorPhotoUrl} alt="Autor" className="w-10 h-10 rounded-full object-cover mb-6 border border-white/15" />
         )}
 
         <label className="block text-sm font-semibold text-slate mb-2">Contenido</label>

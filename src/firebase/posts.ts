@@ -16,6 +16,7 @@ export type Post = {
   coverImageUrl: string;
   authorId: string;
   authorName: string;
+  authorPhotoUrl: string;
   tags: string[];
   status: PostStatus;
   createdAt: Date;
@@ -34,6 +35,7 @@ function toPost(id: string, data: any): Post {
     coverImageUrl: data.coverImageUrl ?? '',
     authorId: data.authorId ?? '',
     authorName: data.authorName ?? '',
+    authorPhotoUrl: data.authorPhotoUrl ?? '',
     tags: data.tags ?? [],
     status: data.status,
     createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(),
@@ -75,6 +77,7 @@ export type PostInput = {
   coverImageUrl: string;
   authorId: string;
   authorName: string;
+  authorPhotoUrl: string;
   tags: string[];
   status: PostStatus;
 };
