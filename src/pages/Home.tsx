@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { getPublishedPosts } from '../firebase/posts';
 import type { Post } from '../firebase/posts';
-import { formatDate } from '../utils/date';
 import { StatusPanel } from '../components/home/StatusPanel';
 import { TechOrbit } from '../components/home/TechOrbit';
 import { StatCard } from '../components/home/StatCard';
 import { ScrollCue } from '../components/ui/ScrollCue';
 import { useScrollReveal } from '../utils/useScrollReveal';
+import { PostCard } from '../components/blog/PostCard';
 
 const stats = [
   { num: '24', label: 'Proyectos entregados', icon: 'M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z' },
@@ -96,21 +96,7 @@ export function Home() {
         </div>
         <div className="grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))' }}>
           {posts.map((p) => (
-            <Link key={p.id} to={`/blog/${p.slug}`} className="block bg-white/[0.04] border border-white/10 rounded-2xl overflow-hidden">
-              {p.coverImageUrl ? (
-                <div className="aspect-video bg-cover bg-center" style={{ backgroundImage: `url(${p.coverImageUrl})` }} />
-              ) : (
-                <div className="aspect-video bg-gradient-to-br from-orbix-violet/40 to-orbix-lime/15" />
-              )}
-              <div className="p-6">
-                <div className="flex items-center gap-2.5 mb-3">
-                  <span className="text-xs font-semibold text-orbix-lime bg-orbix-lime/10 rounded-full px-2.5 py-1">{p.tags[0]}</span>
-                  <span className="text-xs text-slate">{formatDate(p.createdAt)}</span>
-                </div>
-                <h3 className="font-display font-semibold text-lg mb-2">{p.title}</h3>
-                <p className="text-sm text-slate">{p.summary}</p>
-              </div>
-            </Link>
+            <PostCard key={p.id} post={p} />
           ))}
         </div>
       </section>

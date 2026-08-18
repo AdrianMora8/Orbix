@@ -25,7 +25,15 @@ export function PostCard({ post }: { post: Post }) {
         <h3 className="font-display font-semibold text-lg mb-2.5">{post.title}</h3>
         <p className="text-sm text-slate mb-4">{post.summary}</p>
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime" />
+          {post.authorPhotoUrl ? (
+            <img
+              src={post.authorPhotoUrl}
+              alt={post.authorName}
+              className="w-7 h-7 rounded-full object-cover border border-white/10"
+            />
+          ) : (
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime flex-shrink-0" />
+          )}
           <span className="text-sm text-slate">{post.authorName}</span>
         </div>
       </div>

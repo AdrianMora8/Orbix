@@ -39,12 +39,6 @@ export function BlogPost() {
 
   return (
     <div>
-      {post.coverImageUrl ? (
-        <div className="aspect-[21/8] min-h-[220px] bg-cover bg-center" style={{ backgroundImage: `url(${post.coverImageUrl})` }} />
-      ) : (
-        <div className="aspect-[21/8] min-h-[220px] bg-gradient-to-br from-orbix-violet/50 to-orbix-lime/20" />
-      )}
-
       <div className="max-w-6xl mx-auto px-8 py-14 flex gap-12">
         <TableOfContentsSidebar sections={sections} />
 
@@ -59,12 +53,31 @@ export function BlogPost() {
           </div>
           <h1 className="font-display font-bold text-5xl leading-tight mb-6">{post.title}</h1>
           <div className="flex items-center gap-3 pb-7 mb-8 border-b border-white/10">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime" />
+            {post.authorPhotoUrl ? (
+              <img
+                src={post.authorPhotoUrl}
+                alt={post.authorName}
+                className="w-11 h-11 rounded-full object-cover border border-white/15"
+              />
+            ) : (
+              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-orbix-violet to-orbix-lime flex-shrink-0" />
+            )}
             <div>
               <div className="font-semibold text-bone">{post.authorName}</div>
               <div className="text-sm text-slate">ORBIX Studio</div>
             </div>
           </div>
+
+          {/* Imagen de portada contenida dentro del artículo */}
+          {post.coverImageUrl ? (
+            <div
+              className="rounded-2xl overflow-hidden mb-10 border border-white/10 bg-cover bg-center w-full"
+              style={{ backgroundImage: `url(${post.coverImageUrl})`, aspectRatio: '16/7', maxHeight: '400px' }}
+            />
+          ) : (
+            <div className="rounded-2xl mb-10 bg-gradient-to-br from-orbix-violet/50 to-orbix-lime/20" style={{ aspectRatio: '16/7', maxHeight: '400px' }} />
+          )}
+
           <div
             className="text-[17.5px] leading-8 text-[#c9cfda]
               [&_h2]:relative [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-2xl [&_h2]:text-bone [&_h2]:mt-14 [&_h2]:mb-5 [&_h2]:pt-4 [&_h2]:scroll-mt-24

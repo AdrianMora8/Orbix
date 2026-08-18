@@ -4,12 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0A0A12',
-        navy: '#14121F',
+        // Los colores apuntan a variables CSS → cambian automáticamente con el tema
+        bg: 'var(--color-bg)',
+        navy: 'var(--color-navy)',
+        bone: 'var(--color-bone)',
+        slate: 'var(--color-slate)',
+        // Colores de marca (constantes, no cambian con el tema)
         'orbix-violet': '#7C3AED',
         'orbix-lime': '#B6FF3C',
-        bone: '#F5F5FA',
-        slate: '#948FA3',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'sans-serif'],

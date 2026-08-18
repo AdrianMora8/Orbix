@@ -14,6 +14,27 @@ function isOfficeHoursNow(): boolean {
   return day >= 1 && day <= 5 && hour >= 9 && hour < 18;
 }
 
+const INFO_ITEMS = [
+  {
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    label: 'Email',
+    value: 'orbix@uta.edu.ec',
+    href: 'mailto:orbix@uta.edu.ec',
+  },
+  {
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
+    label: 'Ubicación',
+    value: 'Universidad Técnica de Ambato, Campus Huachi',
+    href: 'https://maps.google.com/?q=Universidad+Técnica+de+Ambato+Campus+Huachi',
+  },
+  {
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+    label: 'Horario',
+    value: 'Lunes a Viernes · 9:00 – 18:00',
+    href: null,
+  },
+];
+
 export function Contacto() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,8 +62,22 @@ export function Contacto() {
 
   return (
     <div>
-      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
-        <div className="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-4">
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center overflow-hidden">
+        {/* Elemento decorativo orbital */}
+        <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden lg:block" aria-hidden>
+          <div className="relative w-72 h-72 opacity-20">
+            <div className="absolute inset-0 rounded-full border border-orbix-violet/60 orbit-ring-spin" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-orbix-violet/30 border border-orbix-violet/60 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-orbix-lime">
+                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-4 relative z-10">
           <div>
             <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Contacto</span>
             <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3">Hablemos de tu proyecto</h1>
@@ -86,14 +121,14 @@ export function Contacto() {
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-bone outline-none focus:border-orbix-violet" />
               </div>
               {error && <p className="text-sm text-red-400">{error}</p>}
-              <button type="submit" className="bg-orbix-violet text-bone rounded-xl px-6 py-3.5 font-display font-semibold self-start">
+              <button type="submit" className="bg-orbix-violet text-bone rounded-xl px-6 py-3.5 font-display font-semibold self-start hover:bg-orbix-lime hover:text-navy transition-colors">
                 Enviar
               </button>
               <a
                 href={whatsappHref()}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-orbix-lime/30 text-orbix-lime rounded-xl px-6 py-3.5 font-display font-semibold"
+                className="inline-flex items-center justify-center gap-2 border border-orbix-lime/30 text-orbix-lime rounded-xl px-6 py-3.5 font-display font-semibold hover:bg-orbix-lime/10 transition-colors"
               >
                 Enviar por WhatsApp
               </a>
@@ -102,11 +137,28 @@ export function Contacto() {
         </form>
 
         <div>
-          <h2 className="font-display font-semibold text-xl mb-5">Información</h2>
-          <div className="flex flex-col gap-3 text-slate mb-8">
-            <span>Orbix@uta.edu.ec</span>
-            <span>Universidad Técnica de Ambato, Campus Huachi</span>
-            <span>Lun a Vie · 9–18h</span>
+          <h2 className="font-display font-semibold text-xl mb-7">Información de contacto</h2>
+          <div className="flex flex-col gap-5 mb-8">
+            {INFO_ITEMS.map((item) => (
+              <div key={item.label} className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-orbix-violet/10 border border-orbix-violet/20 flex-shrink-0 grid place-items-center">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-orbix-violet">
+                    <path d={item.icon} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs font-mono uppercase tracking-widest text-slate mb-1">{item.label}</div>
+                  {item.href ? (
+                    <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer"
+                      className="text-sm text-bone hover:text-orbix-lime transition-colors">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className="text-sm text-bone">{item.value}</span>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
           <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
             <iframe

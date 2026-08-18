@@ -30,12 +30,20 @@ export function Dashboard() {
       <div className="flex items-center gap-4 px-7 py-4 bg-navy/85 border-b border-white/10">
         <Logo variant="icon" />
         <span className="font-display font-semibold text-sm text-slate">Panel de administración</span>
-        <button
-          onClick={async () => { await signOut(); navigate('/admin/login'); }}
-          className="ml-auto border border-white/15 text-slate rounded-lg px-4 py-2 text-sm hover:text-orbix-lime hover:border-orbix-lime/40"
-        >
-          Cerrar sesión
-        </button>
+        <div className="ml-auto flex items-center gap-2.5">
+          <Link
+            to="/admin/perfil"
+            className="border border-white/15 text-slate rounded-lg px-4 py-2 text-sm hover:text-orbix-lime hover:border-orbix-lime/40"
+          >
+            Mi perfil
+          </Link>
+          <button
+            onClick={async () => { await signOut(); navigate('/admin/login'); }}
+            className="border border-white/15 text-slate rounded-lg px-4 py-2 text-sm hover:text-orbix-lime hover:border-orbix-lime/40"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-7 py-11">

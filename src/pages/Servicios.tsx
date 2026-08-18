@@ -54,8 +54,28 @@ export function Servicios() {
 
   return (
     <div>
-      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center">
-        <div className="max-w-6xl mx-auto w-full">
+      <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center overflow-hidden">
+        {/* Ilustración decorativa */}
+        <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none select-none hidden lg:flex items-center justify-center opacity-[0.07]" aria-hidden>
+          <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg">
+            <rect x="40" y="60" width="400" height="360" rx="18" fill="#7C3AED" />
+            <rect x="40" y="60" width="400" height="44" rx="18" fill="#B6FF3C" />
+            <circle cx="72" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
+            <circle cx="100" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
+            <circle cx="128" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
+            <rect x="72" y="136" width="120" height="10" rx="5" fill="#B6FF3C" opacity="0.6"/>
+            <rect x="72" y="162" width="240" height="8" rx="4" fill="white" opacity="0.3"/>
+            <rect x="72" y="182" width="200" height="8" rx="4" fill="white" opacity="0.2"/>
+            <rect x="88" y="210" width="160" height="8" rx="4" fill="#B6FF3C" opacity="0.3"/>
+            <rect x="88" y="230" width="140" height="8" rx="4" fill="white" opacity="0.2"/>
+            <rect x="72" y="258" width="180" height="8" rx="4" fill="white" opacity="0.3"/>
+            <rect x="72" y="278" width="220" height="8" rx="4" fill="white" opacity="0.2"/>
+            <rect x="88" y="306" width="100" height="8" rx="4" fill="#B6FF3C" opacity="0.4"/>
+            <rect x="72" y="334" width="260" height="8" rx="4" fill="white" opacity="0.2"/>
+            <rect x="72" y="354" width="180" height="8" rx="4" fill="white" opacity="0.15"/>
+          </svg>
+        </div>
+        <div className="max-w-6xl mx-auto w-full relative z-10">
           <span className="orbit-enter orbit-enter-1 block text-sm font-semibold tracking-widest text-orbix-violet uppercase">Servicios</span>
           <h1 className="orbit-enter orbit-enter-2 font-display font-bold text-5xl mt-3 mb-4 max-w-2xl">Cinco disciplinas, un mismo criterio técnico.</h1>
           <p className="orbit-enter orbit-enter-3 text-lg text-slate max-w-2xl">
