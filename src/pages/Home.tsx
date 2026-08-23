@@ -53,7 +53,7 @@ export function Home() {
         <ScrollCue />
       </section>
 
-      <section className="py-14 border-y border-white/10">
+      <section className="py-14 border-y border-white/10 bg-orbix-violet/[0.07]">
         <TechOrbit />
       </section>
 
@@ -66,7 +66,7 @@ export function Home() {
             <span className="text-xs font-mono uppercase tracking-widest text-orbix-violet">01 · Misión</span>
             <p className="text-slate leading-relaxed mt-3">Diseñar y construir soluciones de software que resuelven problemas reales, aplicando en cada proyecto académico los estándares de calidad de la industria.</p>
           </div>
-          <div className="p-10 bg-white/[0.02] relative border-t md:border-t-0 md:border-l border-white/10">
+          <div className="p-10 bg-orbix-violet/[0.07] relative border-t md:border-t-0 md:border-l border-white/10">
             <div className="orbit-radar w-12 h-12 rounded-full border border-orbix-lime/40 bg-orbix-lime/10 grid place-items-center mb-5 text-orbix-lime">
               <span className="w-2.5 h-2.5 rounded-full bg-orbix-lime" />
             </div>

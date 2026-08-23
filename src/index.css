@@ -12,11 +12,11 @@
 }
 
 html.light {
-  /* Modo claro */
-  --color-bg:    #F4F4F8;
-  --color-navy:  #FFFFFF;
-  --color-bone:  #1A1A2E;
-  --color-slate: #5B5870;
+  /* Modo claro — morado/verde de marca con saturación real, no un blanco con un toque de color */
+  --color-bg:    #EBE0FA;
+  --color-navy:  #DBC8F5;
+  --color-bone:  #1B1730;
+  --color-slate: #5C5578;
 }
 
 /* ─── Base ───────────────────────────────────────────────────────── */
@@ -25,22 +25,58 @@ body { -webkit-font-smoothing: antialiased; transition: background 0.25s ease, c
 ::selection { background: rgba(124,58,237,0.35); }
 
 /* ─── Overrides de transparencia para modo claro ─────────────────── */
-/* En dark: bg-white/5 se ve bien. En light: usamos bg-black/5 */
-html.light .bg-white\/\[0\.04\]  { background-color: rgba(0,0,0,0.04) !important; }
-html.light .bg-white\/\[0\.03\]  { background-color: rgba(0,0,0,0.03) !important; }
-html.light .bg-white\/\[0\.02\]  { background-color: rgba(0,0,0,0.02) !important; }
-html.light .bg-white\/5          { background-color: rgba(0,0,0,0.05) !important; }
-html.light .border-white\/10     { border-color: rgba(0,0,0,0.1) !important; }
-html.light .border-white\/15     { border-color: rgba(0,0,0,0.15) !important; }
-html.light .border-white\/5      { border-color: rgba(0,0,0,0.05) !important; }
-html.light .divide-white\/10 > * + * { border-color: rgba(0,0,0,0.1) !important; }
-html.light .text-\[\#c9cfda\]    { color: #3a3850 !important; }
-html.light .bg-black\/20         { background-color: rgba(0,0,0,0.05) !important; }
-html.light .bg-black\/70         { background-color: rgba(0,0,0,0.08) !important; }
-html.light .bg-navy\/80          { background-color: rgba(255,255,255,0.85) !important; }
-html.light .bg-navy\/85          { background-color: rgba(255,255,255,0.9) !important; }
-html.light .bg-navy\/95          { background-color: rgba(255,255,255,0.97) !important; }
-html.light .border-white\/\[0\.5\] { border-color: rgba(0,0,0,0.05) !important; }
+/* En dark: bg-white/X es un lavado blanco sobre fondo oscuro. En light usamos el mismo
+   morado de marca en baja opacidad en vez de gris/negro plano, para que las superficies
+   (tarjetas, bordes, chips) se sientan parte de la misma paleta y no "todo blanco". */
+html.light .bg-white\/\[0\.04\]  { background-color: rgba(124,58,237,0.05) !important; }
+html.light .bg-white\/\[0\.03\]  { background-color: rgba(124,58,237,0.04) !important; }
+html.light .bg-white\/\[0\.02\]  { background-color: rgba(124,58,237,0.03) !important; }
+html.light .bg-white\/5          { background-color: rgba(124,58,237,0.06) !important; }
+html.light .bg-white\/10         { background-color: rgba(124,58,237,0.08) !important; }
+html.light .border-white\/10     { border-color: rgba(124,58,237,0.14) !important; }
+html.light .border-white\/15     { border-color: rgba(124,58,237,0.18) !important; }
+html.light .border-white\/20     { border-color: rgba(124,58,237,0.22) !important; }
+html.light .border-white\/25     { border-color: rgba(124,58,237,0.26) !important; }
+html.light .border-white\/5      { border-color: rgba(124,58,237,0.08) !important; }
+html.light .divide-white\/10 > * + * { border-color: rgba(124,58,237,0.14) !important; }
+html.light .text-\[\#c9cfda\]    { color: #4A4460 !important; }
+html.light .text-white\/15       { color: rgba(76,29,149,0.35) !important; }
+/* El footer cierra la página con un morado más profundo, para que se note el ritmo de tonos */
+html.light .bg-black\/20         { background-color: rgba(76,29,149,0.1) !important; }
+html.light .bg-black\/70         { background-color: rgba(76,29,149,0.16) !important; }
+html.light .bg-navy\/80          { background-color: rgba(219,200,245,0.88) !important; }
+html.light .bg-navy\/85          { background-color: rgba(219,200,245,0.92) !important; }
+html.light .bg-navy\/95          { background-color: rgba(219,200,245,0.97) !important; }
+html.light .border-white\/\[0\.5\] { border-color: rgba(124,58,237,0.1) !important; }
+
+/* Las tarjetas (bg-navy) ya llevan color propio (lila saturado); una sombra morada las levanta
+   del fondo en vez de apoyarse en un borde gris. */
+html.light .bg-navy {
+  box-shadow: 0 1px 2px rgba(76,29,149,0.08), 0 8px 24px -12px rgba(76,29,149,0.25);
+}
+
+/* Las secciones "alternas" (stats, misión/visión, orbit) usan lavados planos y bien
+   saturados en vez de una transparencia del 5% — así se nota de verdad el cambio de tono
+   entre secciones. Todo dentro de la misma familia morada, en distintas profundidades. */
+html.light .bg-orbix-violet\/5      { background-color: #E2D2F9 !important; }
+html.light .bg-orbix-violet\/\[0\.07\] { background-color: #D2B8F0 !important; }
+
+/* El lima de marca (#B6FF3C) es ilegible sobre fondos claros: se oscurece solo en modo claro.
+   Se usa un verde más profundo que el de la corrección anterior para que también contraste
+   bien sobre la nueva superficie lila (--color-navy), no solo sobre blanco. */
+html.light .text-orbix-lime,
+html.light .hover\:text-orbix-lime:hover,
+html.light .group:hover .group-hover\:text-orbix-lime {
+  color: #375510 !important;
+}
+html.light .border-orbix-lime,
+html.light .border-orbix-lime\/30,
+html.light .border-orbix-lime\/40,
+html.light .hover\:border-orbix-lime:hover,
+html.light .hover\:border-orbix-lime\/40:hover,
+html.light .group:hover .group-hover\:border-orbix-lime\/50 {
+  border-color: #375510 !important;
+}
 
 /* Mesh bg en modo claro */
 html.light .orbit-mesh-bg {
@@ -48,8 +84,8 @@ html.light .orbit-mesh-bg {
     radial-gradient(600px circle at 15% 20%, rgba(124, 58, 237, 0.15), transparent 60%),
     radial-gradient(500px circle at 85% 10%, rgba(182, 255, 60, 0.08), transparent 55%),
     radial-gradient(700px circle at 70% 80%, rgba(124, 58, 237, 0.08), transparent 60%),
-    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px) !important;
+    linear-gradient(rgba(124,58,237,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.05) 1px, transparent 1px) !important;
   background-size: auto, auto, auto, 44px 44px, 44px 44px;
 }
 

@@ -1,12 +1,17 @@
+import { useTheme } from '../../utils/useTheme';
+
 type LogoProps = {
   variant?: 'wordmark' | 'icon';
+  /** Forzar un tema puntual (p. ej. sobre una superficie que no sigue el tema global). Por defecto usa el tema activo de la app. */
   theme?: 'dark' | 'light';
 };
 
-export function Logo({ variant = 'wordmark', theme = 'dark' }: LogoProps) {
+export function Logo({ variant = 'wordmark', theme }: LogoProps) {
+  const { theme: activeTheme } = useTheme();
+  const resolvedTheme = theme ?? activeTheme;
   const ring = '#7C3AED';
-  const cross = '#B6FF3C';
-  const text = theme === 'dark' ? '#F5F5FA' : '#14121F';
+  const cross = resolvedTheme === 'light' ? '#375510' : '#B6FF3C';
+  const text = resolvedTheme === 'dark' ? '#F5F5FA' : '#1B1730';
 
   return (
     <div className="flex items-center gap-3">
