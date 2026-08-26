@@ -56,23 +56,44 @@ export function Servicios() {
     <div>
       <section className="orbit-hero orbit-mesh-bg relative border-b border-white/10 px-8 flex items-center overflow-hidden">
         {/* Ilustración decorativa */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none select-none hidden lg:flex items-center justify-center opacity-[0.07]" aria-hidden>
+        <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none select-none hidden lg:flex items-center justify-center opacity-55" aria-hidden>
           <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg">
-            <rect x="40" y="60" width="400" height="360" rx="18" fill="#7C3AED" />
+            {/* Ventana */}
+            <rect x="40" y="60" width="400" height="360" rx="18" fill="#0A0A12" />
+            {/* Barra superior */}
             <rect x="40" y="60" width="400" height="44" rx="18" fill="#B6FF3C" />
             <circle cx="72" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
             <circle cx="100" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
             <circle cx="128" cy="82" r="8" fill="#0A0A12" opacity="0.4"/>
-            <rect x="72" y="136" width="120" height="10" rx="5" fill="#B6FF3C" opacity="0.6"/>
-            <rect x="72" y="162" width="240" height="8" rx="4" fill="white" opacity="0.3"/>
-            <rect x="72" y="182" width="200" height="8" rx="4" fill="white" opacity="0.2"/>
-            <rect x="88" y="210" width="160" height="8" rx="4" fill="#B6FF3C" opacity="0.3"/>
-            <rect x="88" y="230" width="140" height="8" rx="4" fill="white" opacity="0.2"/>
-            <rect x="72" y="258" width="180" height="8" rx="4" fill="white" opacity="0.3"/>
-            <rect x="72" y="278" width="220" height="8" rx="4" fill="white" opacity="0.2"/>
-            <rect x="88" y="306" width="100" height="8" rx="4" fill="#B6FF3C" opacity="0.4"/>
-            <rect x="72" y="334" width="260" height="8" rx="4" fill="white" opacity="0.2"/>
-            <rect x="72" y="354" width="180" height="8" rx="4" fill="white" opacity="0.15"/>
+            {/* Pestaña / nombre de archivo */}
+            <rect x="300" y="70" width="118" height="24" rx="12" fill="white" opacity="0.12" />
+            <text x="314" y="87" fontFamily="monospace" fontSize="12" fill="#0A0A12" opacity="0.7">servicios.json</text>
+            {/* Números de línea */}
+            <g fontFamily="monospace" fontSize="11" fill="#B6FF3C" opacity="0.35">
+              <text x="58" y="132">1</text>
+              <text x="58" y="162">2</text>
+              <text x="58" y="192">3</text>
+              <text x="58" y="222">4</text>
+              <text x="58" y="252">5</text>
+              <text x="58" y="282">6</text>
+              <text x="58" y="312">7</text>
+              <text x="58" y="342">8</text>
+              <text x="58" y="372">9</text>
+            </g>
+            {/* Contenido JSON: las 5 disciplinas */}
+            <g fontFamily="monospace" fontSize="14">
+              <text x="84" y="132" fill="white">{"{"}</text>
+              <text x="84" y="162"><tspan fill="#B6FF3C">"servicios"</tspan><tspan fill="white">: [</tspan></text>
+              <text x="100" y="192"><tspan fill="white">{"{ "}</tspan><tspan fill="#B6FF3C">"01"</tspan><tspan fill="white">: </tspan><tspan fill="#E2E8F0">"Web a medida"</tspan><tspan fill="white">{" },"}</tspan></text>
+              <text x="100" y="222"><tspan fill="white">{"{ "}</tspan><tspan fill="#B6FF3C">"02"</tspan><tspan fill="white">: </tspan><tspan fill="#E2E8F0">"Apps móviles"</tspan><tspan fill="white">{" },"}</tspan></text>
+              <text x="100" y="252"><tspan fill="white">{"{ "}</tspan><tspan fill="#B6FF3C">"03"</tspan><tspan fill="white">: </tspan><tspan fill="#E2E8F0">"APIs y Back-end"</tspan><tspan fill="white">{" },"}</tspan></text>
+              <text x="100" y="282"><tspan fill="white">{"{ "}</tspan><tspan fill="#B6FF3C">"04"</tspan><tspan fill="white">: </tspan><tspan fill="#E2E8F0">"Diseño UI/UX"</tspan><tspan fill="white">{" },"}</tspan></text>
+              <text x="100" y="312"><tspan fill="white">{"{ "}</tspan><tspan fill="#B6FF3C">"05"</tspan><tspan fill="white">: </tspan><tspan fill="#E2E8F0">"Consultoría"</tspan><tspan fill="white">{" }"}</tspan></text>
+              <text x="84" y="342" fill="white">]</text>
+              <text x="84" y="372" fill="white">{"}"}</text>
+              {/* Cursor del editor */}
+              <rect x="96" y="374" width="8" height="13" fill="#B6FF3C" />
+            </g>
           </svg>
         </div>
         <div className="max-w-6xl mx-auto w-full relative z-10">
